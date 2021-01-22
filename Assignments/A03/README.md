@@ -4,9 +4,8 @@
 
 This program implements a list data structure that links together nodes of integers. It does more stuff, but we don't need to write that here.
 
-### Files
+|   #   | File                             | Description                                |
+| :---: | -------------------------------- | ------------------------------------------ |
+|   1   | [main.cpp](main.cpp)             | The main cpp with comments and description |
+|   2   | [Given_main.cpp](Given_main.cpp) | The main cpp before any comments.          |
 
-|   #   | File             | Description                      |
-| :---: | ---------------- | -------------------------------- |
-|   1   | https://github.com/ethancoyle7/2143-OOP-Coyle/blob/main/Assignments/A03/main.cpp| Main driver of my list program . |
-|   2   | https://github.com/ethancoyle7/2143-OOP-Coyle/blob/main/Assignments/A03/original_main.cpp| original main w/out comments     |
