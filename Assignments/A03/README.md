@@ -8,5 +8,5 @@ This program implements a list data structure that links together nodes of integ
 
 |   #   | File             | Description                      |
 | :---: | ---------------- | -------------------------------- |
-|   1   | https://github.com/ethancoyle7/2143-OOP-Coyle/blob/main/Assignments/A03/main.cpp        | Main driver of my list program . |
-|   2   | original_main.cpp| original main w/out comments     |
+|   1   | https://github.com/ethancoyle7/2143-OOP-Coyle/blob/main/Assignments/A03/main.cpp| Main driver of my list program . |
+|   2   | https://github.com/ethancoyle7/2143-OOP-Coyle/blob/main/Assignments/A03/original_main.cpp| original main w/out comments     |
