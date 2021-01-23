@@ -36,65 +36,65 @@
 ><img src="https://image.slidesharecdn.com/oopincupdated-copy-161117040715/95/object-oriented-programming-using-c-slides-15-40-638.jpg?cb=1479378365" width=250>
 
 
-####Attributes / Properties
+#### Attributes / Properties
 > attributes and properties in C++ are used to provide some additional info that enforces the set constriants, used for optimizing and performing certain
 >tasks if need be in code.
 
-####Class Variable
+#### Class Variable
 > a class variable is any instance of a stand alone single declared name that can be of any specified data type
 
 ><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20191113121956/TypesofVariableInC.png" width=250>
 
 
 
-####Composition
+#### Composition
 > one or more of the objects of a certain class have a relationship with other classes. an example of this is a string object.
 
 
 
-####Constructor
+#### Constructor
 > this is a method inside a class that is automatically called whenever an object of the class is created ( i.e. default constructor for 
 >default values
 
 
-####Encapsulation
+#### Encapsulation
 > encapsulation is a process that combines data member and functions togeter into a single item
 > which is referred to more commonly as class, which in turn prevents direct access to this data
 > Although, access to these items and data members are done through the functions of those classes
 
-####Friends
+#### Friends
 > A friend function in a class is defined outside of that sepcified classes scop, however,
 > this has all rights given to it of all the private and public members of that class. This appears inside
 > the class definition but is not a member function.
 > can be a function, templated function, class, class function in which all members are friends :)
 
 
-####Inheritance
+#### Inheritance
 > the definition of inheritance in c++ is the process in which an object acquires all the properties
 > and the stated behaviours that are associated with that. This is particulularly ueful when the 
 > user wants to modify certain things inside another class but still keep the original without modification
 
-####Instance Variable
+#### Instance Variable
 > instance variables are not static. they are variables that are declared in a class outside of 
 > all methods, constructor or blocks. these are created whenever objects of a class is created and 
 > then destroyed
 
 
-####Member Variable
+#### Member Variable
 > member variables are variables that are static and are declared inside of the class.
 
-####Multiple Inheritance
+#### Multiple Inheritance
 
-####Overloading
-
-
-####Polymorphism
+#### Overloading
 
 
-####Public / Private / Protected
+#### Polymorphism
 
 
-####Static
+#### Public / Private / Protected
 
 
-####Virtual
+#### Static
+
+
+#### Virtual
