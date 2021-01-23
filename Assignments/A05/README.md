@@ -85,6 +85,8 @@
 
 #### Multiple Inheritance
 
+>< img src="https://lh3.googleusercontent.com/proxy/pPWVoru4ylDgUky5IqVBJq18_dRvQ-ESFACY4JQEXkrRzGd_721cFO8mOVhUBF8FP_FTn6GnA6xk2XiiHsCSDK-pUZ3UTw9TEt00Lysz8tM7ggSLKEJ6Z-lANCg87Q" width=250>
+
 #### Overloading
 
 
