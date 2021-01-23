@@ -87,6 +87,7 @@
 #### Multiple Inheritance
 > this refers to inheriting traits from more than one parent object or class. When this is done,
 > these inherited traits are called in the order in which they are made.
+
 >< img src="http://www.learncpp.com/images/CppTutorial/Section11/PersonTeacher.gif" width=250>
 
 
