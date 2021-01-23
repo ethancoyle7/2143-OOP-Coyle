@@ -18,6 +18,7 @@
 #### Object
 > The definition of an object is an individual item that is created from ablueprint(class) in C++. when you create an
 >object in C++, it utilizes the specified class it pertains to a creates a unique item ( car1, car2, truck, etc.)
+
 ><img src="https://ds055uzetaobb.cloudfront.net/image_optimizer/722c82aff075a14313be7fa7463f7fedad151a0a.png" width=250>
 
 
@@ -30,6 +31,7 @@
 #### Abstraction
 > the definition of abstraction in C++ is the creation of a functionality of a created class, but details that are unnecessary are 
 > not shown to the user. 
+
 ><img src="https://image.slidesharecdn.com/oopincupdated-copy-161117040715/95/object-oriented-programming-using-c-slides-15-40-638.jpg?cb=1479378365" width=250>
 
 
@@ -39,6 +41,7 @@
 
 ####Class Variable
 > a class variable is any instance of a stand alone single declared name that can be of any specified data type
+
 ><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20191113121956/TypesofVariableInC.png" width=250>
 
 
