@@ -11,6 +11,7 @@
 #### Class
 > the definition of a class is essential like a blueprint to make other objects. For example you have the blueprint
 >of a car and want to make more, creating a class is a way to create more object( cars).
+
 ><img src="https://ds055uzetaobb.cloudfront.net/image_optimizer/722c82aff075a14313be7fa7463f7fedad151a0a.png" width=250>
 
 
