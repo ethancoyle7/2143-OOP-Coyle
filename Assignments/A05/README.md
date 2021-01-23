@@ -81,23 +81,48 @@
 
 
 #### Member Variable
-> member variables are variables that are static and are declared inside of the class.
+> member variables are variables that are static and are declared inside of the class. These are found
+> inside the Private of Public sections of a class.
 
 #### Multiple Inheritance
-
+> this refers to inheriting traits from more than one parent object or class. When this is done,
+> these inherited traits are called in the order in which they are made.
 >< img src="http://www.learncpp.com/images/CppTutorial/Section11/PersonTeacher.gif" width=250>
 
 
 #### Overloading
+> this lets you define a method several time with different sets of argument lists.
+> this is most common in a class, with defauly constructor, a user desfined default constructor.\
+> this also alows the user to perform arithmetic operations like ( %, +, - etc) this can even be used 
+> with addition of multiple objects.
 
 
 #### Polymorphism
+> this is the ability of an object to take several forms. This is a term that describes the basic principle
+> in which different classes are able to be used withing the system and provide their own
+> individual implementation.
+
 
 
 #### Public / Private / Protected
+> These are going to be access modifiers which allow the user to discern when and where and how the user is 
+>            able to access data through encapsulation.
+
+>"Public" - Any class can access this portion of a class outside of itself
+
+>"Private" - Means that only the current class of friends of that class have access 
+
+>"Protected" - means that only the current class and the subclasses of that specified class
+>              have access to the protected fields or methods
 
 
 #### Static
+> these are things in coding such as variable that are initialized once in the program and retain
+> their value throughout the entirety of the program and they are not changed.
 
 
 #### Virtual
+> this allows a program to call methods that dont "really" exsit upon compilation. This
+> also refers to the inheritable and functions that are able to be over riden in which are dynamically
+> dispatched.
+
