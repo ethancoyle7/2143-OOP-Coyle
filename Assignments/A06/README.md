@@ -12,7 +12,7 @@ This assignment is more about breaking the ice with SFML, and how to get comfort
 |  #  | File                             | Description                       |
 | :-: | -------------------------------- | --------------------------------- |
 |  1  | [main.cpp](main.cpp)             | The main cpp saying "Hello World" |
-|  2  | [screenshot(220).png](screenshot(220).png) | The Screen shot of the green dot  |
+|  2  | [Screenshot (220).png](Screenshot (220).png) | The Screen shot of the green dot  |
 
 ### Instructions
 
