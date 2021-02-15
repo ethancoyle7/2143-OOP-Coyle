@@ -2,6 +2,16 @@
 | :---: | -------------------------------- | -------------------------------------------------------------- |
 |   PO1   | [Banner](Banner)| this is the outline of my main program with classes |
 |   PO1   | [ScreenShot.png](MainClasses.PNG.png)| this is the outline of my main program with classes |
+|   PO1   | [GameClass.png](gameclass.png)| this is the outline of my main program with classes |
+|   PO1   | [main.png](MainClasses.PNG (2).png)| this is the outline of my main program with classes |
+|   PO1   | [collision.png](collision detection.png)| this is the outline of my main program with classes |
+|   PO1   | [color.png](color.png)| this is the outline of my main program with classes |
+|   PO1   | [movement.png](movement.png)| this is the outline of my main program with classes |
+|   PO1   | [debirs.png](debris.png)| this is the outline of my main program with classes |
+|   PO1   | [PlayerClass.png](playerclass.png)| this is the outline of my main program with classes |
+|   PO1   | [scoring.png](scoring.png)| this is the outline of my main program with classes |
+
+
 
 
 
