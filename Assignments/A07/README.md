@@ -124,3 +124,8 @@ Lets look at some of the requirements for our game, and then think about designi
 -Has score(s)
 
 -Has debris(s) (yes "debris" can be plural but it doesn't make the point)
+
+
+# MAIN DIAGRAM
+
+![text if link is broke](MainClasses.PNG.png)
