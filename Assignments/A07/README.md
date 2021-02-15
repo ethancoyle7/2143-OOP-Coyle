@@ -66,6 +66,8 @@ Has a score
 Can collide with other "objects"
 ##### Debris
 ![text if link is broke](debris.png)
+
+
 Has a Shape
 Has a Size
 Has a Color
@@ -73,8 +75,13 @@ Has a Speed
 Has a Location (could change)
 Can move in any direction
 Can collide with other "objects"
-###### Scoring
+
+
+### Scoring
+
 ![text if link is broke](scoring.png)
+
+
 When a Player comes collides with Debris score is negatively effected.
 When a piece of Debris leaves game screen (on the left), score is positively effected.
 Text
@@ -82,8 +89,12 @@ Has a Font (can change)
 Has a Location
 Has a Color
 Has a Size
-###### Game
+
+## Game
+
 ![text if link is broke](gameclass.png)
+
+
 Has player(s)
 Has score(s)
 Has debris(s) (yes "debris" can be plural but it doesn't make the point)
