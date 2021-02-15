@@ -53,6 +53,9 @@ Lets look at some of the requirements for our game, and then think about designi
 ## Possible Classes
 
 ###### Player
+![text if link is broke](playerclass.png)
+
+
 Has a Shape
 Has a Size
 Has a Color
