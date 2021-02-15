@@ -1,15 +1,15 @@
 |   #   | File                             | Description                                                    |
 | :---: | -------------------------------- | -------------------------------------------------------------- |
-|   PO1   | [Banner](Banner)| this is the outline of my main program with classes |
-|   PO1   | [ScreenShot.png](MainClasses.PNG.png)| this is the outline of my main program with classes |
-|   PO1   | [GameClass.png](gameclass.png)| this is the outline of my main program with classes |
-|   PO1   | [MainClasses.PNG (2).png](MainClasses.PNG (2).png)| this is the outline of my main program with classes |
-|   PO1   | [collision detection.png](collision detection.png)| this is the outline of my main program with classes |
-|   PO1   | [color.png](color.png)| this is the outline of my main program with classes |
-|   PO1   | [movement.png](movement.png)| this is the outline of my main program with classes |
-|   PO1   | [debirs.png](debris.png)| this is the outline of my main program with classes |
-|   PO1   | [PlayerClass.png](playerclass.png)| this is the outline of my main program with classes |
-|   PO1   | [scoring.png](scoring.png)| this is the outline of my main program with classes |
+|   PO1   | [Banner](Banner)| this is displaying the banner for this assignment                             |
+|   PO1   | [ScreenShot.png](MainClasses.PNG.png)| this is an outline of the whole program                  |
+|   PO1   | [GameClass.png](gameclass.png)| this is the outline of the game class                           |
+|   PO1   | [maintext.png](maintext.png)| this is the main text class                                       |
+|   PO1   | [colidingclass.png](colidingclass.png)| this is the class for collision detection               |
+|   PO1   | [color.png](color.png)| this is determining the color schematics                                |
+|   PO1   | [movement.png](movement.png)| this determines the movement                                      |
+|   PO1   | [debirs.png](debris.png)| this characterizes the debris                                         |
+|   PO1   | [PlayerClass.png](playerclass.png)| this is the main player class                               |
+|   PO1   | [scoring.png](scoring.png)| this determines the scoring aspects                                 |
 
 
 
