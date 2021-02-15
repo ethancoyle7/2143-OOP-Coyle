@@ -48,7 +48,7 @@ When designing classes with the OOP mindset, you should follow a few principles 
 -Can collide with other "objects"
 
 
-##### Debris
+## Debris
 
 ![text if link is broke](debris.png)
 
@@ -68,7 +68,7 @@ When designing classes with the OOP mindset, you should follow a few principles 
 -Can collide with other "objects"
 
 
-### Scoring
+## Scoring
 
 ![text if link is broke](scoring.png)
 
