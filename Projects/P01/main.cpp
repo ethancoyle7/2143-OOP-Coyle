@@ -1,113 +1,177 @@
+
 #include <SFML/Graphics.hpp>
 #include < iostream>
-using namespace std;
+#include<cstdlib>
+
+#include<vector>// using vectors for debris,enemies and ogreshout
+
+using namespace sf;
 
 int main()
 {
-	//first set the screen dimensions 800 by 600
-	sf::Vector2i screendimensions(700, 700);
-	sf::RenderWindow window;
-	window.create(sf::VideoMode(screendimensions.x, screendimensions.y), "Ethan Coyle UML game");
+	//srand(time(NULL));
+
+	sf::RenderWindow window(VideoMode(900, 900), "Ethan's swamp");
+	window.setFramerateLimit(50);
 	
-	//sf::Texture background;
-	//background.loadFromFile("scrolling.png");
-	sf::Texture bTexture;
+	sf::Texture background;
 	sf::Sprite bImage;
-	if (!bTexture.loadFromFile("background.png"))// load a background image
+	if (!background.loadFromFile("swamppicture.png"))
 	{
-		cout << " could not load image" << endl;
+		std::cout << "Error loading texture..." << std::endl;
 	}
 
 
-	//cout << " catch the evil donkies" << endl;
-	bImage.setTexture(bTexture);
-	bImage.setScale(1.0f, (float)screendimensions.y / bTexture.getSize().y);
+	//we are creating a firing material to shoot all the donkies
+	
+	CircleShape OgreShout;
+	OgreShout.setFillColor(Color::White);
+	sf::Texture OgreShoutTexture;
+	OgreShoutTexture.loadFromFile("ogreshout.png");
+	OgreShout.setTexture(&OgreShoutTexture);
+	OgreShout.setRadius(50.f);
 
-	//sf::RectangleShape Debris(sf::Vector2f(100.0f, 100.0f));
-	//Debris.setFillColor(sf::Color::White);
-	//sf::Texture DebrisTexture;
 
-	////create the player box to load picture for the player
+	//debris is created
 
-	//DebrisTexture.loadFromFile("evildonkey.png");
-	//Debris.setTexture(&DebrisTexture);
+	RectangleShape Debris;
+	Debris.setFillColor(Color::White);//texture fill is white
+	sf::Texture debrisTexture;
+	debrisTexture.loadFromFile("evildonkey.png");
+	//set the texture to this picture
+	Debris.setTexture(&debrisTexture);
+	
+	Debris.setSize(Vector2f(70.f, 70.f));
 
-	sf::RectangleShape player(sf::Vector2f(200.0f, 200.0f));
-	player.setFillColor(sf::Color::White);
+
+
+	//create a circleshaped player with a picture as the texture
+
+	CircleShape player;
+	player.setFillColor(Color::White);// set white so can see the image
 	sf::Texture playerTexture;
-
-	//create the player box to load picture for the player
-
 	playerTexture.loadFromFile("shrek.png");
 	player.setTexture(&playerTexture);
-	
+	player.setRadius(50.f);
 
-	//in order to traverse over the image to capture the debris
-	//we need to create a view feild to go around the background
-	sf::View view;
-	view.reset(sf::FloatRect(0, 0, screendimensions.x, screendimensions.y));
-	view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));
+	player.setPosition(window.getSize().x / 2 - player.getRadius(),
+		window.getSize().y - player.getRadius() * 2 - 10.f);
+	Vector2f PlayerLocation;//shoot from the center of the player
+
+	int shoutingTime = 0;
+
+	std::vector<CircleShape> ogreshout;
+	ogreshout.push_back(CircleShape(OgreShout));
+
+	std::vector<RectangleShape> donkeydebris;
+	
+	donkeydebris.push_back(RectangleShape(Debris));
+	int debrisSpawnTimer = 0;
 
 	sf::Vector2f position(0, 0);
 
-	while (window.isOpen())// while the window is open start the event
+	bImage.setScale(1.2f, 1.3f);
+	bImage.setTexture(background);
+	bImage.setPosition(1, 1);
+
+	sf::Vector2u size;
+
+	size = background.getSize();
+
+	while (window.isOpen())
 	{
-		sf::Event event;
-		while (window.pollEvent(event))
+		Event event;//start the event
+		while (window.pollEvent(event))// while is open, run the event
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)// while closed event
 				window.close();
 		}
 
-		// below moniters the players key strokes to see which button they press
+	//update the player position
+		PlayerLocation = Vector2f(player.getPosition().x+player.getRadius(), 
+			player.getPosition().y + player.getRadius());
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+		player.setPosition(Mouse::getPosition(window).x, player.getPosition().y);
+
+		//ogreshout
+		if (shoutingTime < 5)
+			shoutingTime++;
+
+		//push the button to fire the ogreshout
+
+		if (Mouse::isButtonPressed(Mouse::Left) && shoutingTime >= 5) //Shoot
 		{
-			// if the player hits the left arrow, then move the character over 
-			// to the left
-			player.move(-1.0f, 0.0f);
+			OgreShout.setPosition(PlayerLocation);
+
+			ogreshout.push_back(CircleShape(OgreShout));
+
+			shoutingTime = 0;
 		}
 
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+		for (size_t i = 0; i < ogreshout.size(); i++)
 		{
-			// if the player hits the right arrow, then move the character over 
-			// to the right
-			player.move(1.0f, 0.0f);
+			ogreshout[i].move(0.f, -10.f);
+
+			if(ogreshout[i].getPosition().y <= 0)
+				ogreshout.erase(ogreshout.begin() + i);
 		}
 
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+		//donkeydebris
+		if(debrisSpawnTimer < 25)
+			debrisSpawnTimer++;
+
+		if (debrisSpawnTimer >= 10)
 		{
-			// if the player hits the up arrow, then move the character over 
-			// up
-			player.move(0.0f, -1.0f);
+			Debris.setPosition((rand() % int(window.getSize().x 
+				- Debris.getSize().x)), 0.f);
+			donkeydebris.push_back(RectangleShape(Debris));
+
+			debrisSpawnTimer = 0;
 		}
 
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+		for (size_t i = 0; i < donkeydebris.size(); i++)
 		{
-			// if the player hits the down arrow, then move the character over 
-			// down
-			player.move(0.0f, 1.0f);
+			donkeydebris[i].move(0.f, 5.f);
+
+			if (donkeydebris[i].getPosition().y > window.getSize().y)
+			{
+				donkeydebris.erase(donkeydebris.begin() + i);
+			}
 		}
 
-		position.x = player.getPosition().x + 10 - (screendimensions.x / 2);
-		position.y = player.getPosition().y + 10 - (screendimensions.y / 2);
-		
-		if (position.y < 0)
-			position.y = 0;
-		if (position.x < 0)
-			position.x = 0;
+		//this nexted if statement will demonstrate the collision
 
-		view.reset(sf::FloatRect(position.x, position.y, screendimensions.x, screendimensions.y));
-
-		window.setView(view);
+		if (!donkeydebris.empty() && !ogreshout.empty())
+		{
+			for (size_t i = 0; i < ogreshout.size(); i++)
+			{
+				for (size_t j = 0; j < donkeydebris.size(); j++)
+				{
+					if (ogreshout[i].getGlobalBounds().intersects(donkeydebris[j].
+						getGlobalBounds()))
+					{
+						ogreshout.erase(ogreshout.begin() + i);
+						donkeydebris.erase(donkeydebris.begin() + j);
+						break;
+					}
+				}
+			}
+		}
 		window.draw(bImage);
-		//window.draw(background);
-		//window.draw(Debris);
-		window.draw(player);
+		
+		//window.clear();//clear the window
+		window.draw(player);//draw the player
+		
+		for (size_t i = 0; i < donkeydebris.size(); i++)
+		{
+			window.draw(donkeydebris[i]);//draw the donkey debris
+		}
 
+		for (size_t i = 0; i < ogreshout.size(); i++)
+		{
+			window.draw(ogreshout[i]);// firing the ogre shout
+		}
+		
 		window.display();
 		window.clear();
 	}
