@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include < iostream>
 #include<cstdlib>
-#include<SFML/Audio.hpp>
+#include "SFML/Audio.hpp"
 
 #include<vector>// using vectors for debris,enemies and ogreshout
 
@@ -15,15 +15,15 @@ int main()
 	sf::RenderWindow window(VideoMode(900, 900), "Ethan's swamp");
 	window.setFramerateLimit(50);
 	
-	sf::Music music;
+	sf::Music music;// create instance to play music
 
 	//we want background music to play while game is playing
-	if (!music.openFromFile("Gandalf.ogg"))
-	{// open the file location 
-		std::cout << "ERROR" << std::endl;
-	}
+	music.openFromFile("Happy.ogg");
 
-	music.play();
+	music.setVolume(50);//set volume half way so no eardrums busted
+	music.play();// play the music
+
+	//music.play();
 	sf::Texture background;
 	sf::Sprite bImage;
 	if (!background.loadFromFile("swamppicture.png"))
@@ -175,7 +175,7 @@ int main()
 				}
 			}
 		}
-		music.play();// play background music
+		//music.play();// play background music
 		window.draw(bImage);
 		
 		//window.clear();//clear the window
