@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include < iostream>
 #include<cstdlib>
+#include<SFML/Audio.hpp>
 
 #include<vector>// using vectors for debris,enemies and ogreshout
 
@@ -14,6 +15,15 @@ int main()
 	sf::RenderWindow window(VideoMode(900, 900), "Ethan's swamp");
 	window.setFramerateLimit(50);
 	
+	sf::Music music;
+
+	//we want background music to play while game is playing
+	if (!music.openFromFile("Gandalf.ogg"))
+	{// open the file location 
+		std::cout << "ERROR" << std::endl;
+	}
+
+	music.play();
 	sf::Texture background;
 	sf::Sprite bImage;
 	if (!background.loadFromFile("swamppicture.png"))
@@ -33,6 +43,10 @@ int main()
 
 
 	//debris is created
+	//debris has a shape
+	//debris has color
+	//debris has different positions
+	//debris has a size
 
 	RectangleShape Debris;
 	Debris.setFillColor(Color::White);//texture fill is white
@@ -46,6 +60,10 @@ int main()
 
 
 	//create a circleshaped player with a picture as the texture
+	//player has a size
+	//player has a color
+	//player has a testure
+	//player has a position given by the mouse
 
 	CircleShape player;
 	player.setFillColor(Color::White);// set white so can see the image
@@ -70,13 +88,13 @@ int main()
 
 	sf::Vector2f position(0, 0);
 
-	bImage.setScale(1.2f, 1.3f);
-	bImage.setTexture(background);
-	bImage.setPosition(1, 1);
+	bImage.setScale(1.2f, 1.3f);// set the background image to fill the screen
+	bImage.setTexture(background);//texture will hold the background
+	bImage.setPosition(1, 1);//set in the center
 
 	sf::Vector2u size;
 
-	size = background.getSize();
+	size = background.getSize();// grabe the size to set
 
 	while (window.isOpen())
 	{
@@ -105,7 +123,7 @@ int main()
 
 			ogreshout.push_back(CircleShape(OgreShout));
 
-			shoutingTime = 0;
+			shoutingTime = 0;//no delay in the shout
 		}
 
 		for (size_t i = 0; i < ogreshout.size(); i++)
@@ -157,6 +175,7 @@ int main()
 				}
 			}
 		}
+		music.play();// play background music
 		window.draw(bImage);
 		
 		//window.clear();//clear the window
