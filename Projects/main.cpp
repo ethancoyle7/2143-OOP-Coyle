@@ -3,6 +3,7 @@
 #include < iostream>
 #include<cstdlib>
 #include "SFML/Audio.hpp"
+#include<sstream>
 
 #include<vector>// using vectors for debris,enemies and ogreshout
 
@@ -10,27 +11,44 @@ using namespace sf;
 
 int main()
 {
-	//srand(time(NULL));
+	
 
 	sf::RenderWindow window(VideoMode(900, 900), "Ethan's swamp");
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(40);
+
+	// first we are creating sound files to cope with interactions
+
 	sf::Music funsound;
-	sf::Music music;// create instance to play music
-	//sf::Music funsound;
+	
+	sf::Music startsound;// this will play an entro sound when the game starts
+	startsound.openFromFile("startup.ogg");
+	startsound.setVolume(500);
+	startsound.play();
 	//we want background music to play while game is playing
+
+	sf::Music music;// create instance to play music
 	music.openFromFile("Happy.ogg");
 
 	music.setVolume(25);//set volume half way so no eardrums busted
 	music.play();// play the music
 
-	//music.play();
-	sf::Texture background;
-	sf::Sprite bImage;
-	if (!background.loadFromFile("swamppicture.png"))
-	{
-		std::cout << "Error loading texture..." << std::endl;
-	}
+	sf::Music gameover;// create instance to play music
+	gameover.openFromFile("youlose.ogg");
 
+	music.setVolume(20);//set volume half way so no eardrums busted
+	
+
+	// next we create a background image texture
+
+
+	sf::Texture background;//set texture for background
+	sf::Sprite bImage;//name the background image
+	background.loadFromFile("swamppicture.png");// image for the background
+	bImage.setScale(1.2f, 1.3f);// set the background image to fill the screen
+	bImage.setTexture(background);//texture will hold the background
+	bImage.setPosition(1, 1);//set in the center
+	sf::Vector2u size;
+	size = background.getSize();// grabe the size to set
 
 	//we are creating a firing material to shoot all the donkies
 	
@@ -88,13 +106,47 @@ int main()
 
 	sf::Vector2f position(0, 0);
 
-	bImage.setScale(1.2f, 1.3f);// set the background image to fill the screen
-	bImage.setTexture(background);//texture will hold the background
-	bImage.setPosition(1, 1);//set in the center
+	
 
-	sf::Vector2u size;
+	
+	
 
-	size = background.getSize();// grabe the size to set
+		//text has a size
+		//test has a shaper
+		//text has location
+		//text has a fill color
+
+
+		Font text;
+		text.loadFromFile("textfont.ttf");
+
+		Text gameOverText;
+		gameOverText.setFont(text);
+		gameOverText.setCharacterSize(100);
+		gameOverText.setFillColor(Color::Green);
+		//gameOverText.setColor(Color::Green);
+		gameOverText.setPosition(30.f, 75.0f);
+		gameOverText.setString("GAME OVER!!!!\n\n MAX POINTS \n \nREACHED!!!!!");
+		
+
+		int score = 0;
+		std::stringstream scoredisplay;
+		//text for the score
+		scoredisplay << score;
+
+
+
+		Text scoreText;
+		
+			scoreText.setFont(text);
+			scoreText.setCharacterSize(80);
+			scoreText.setFillColor(Color::Red);
+			scoreText.setPosition(0.0f, 0.0f);
+			scoreText.setString("     POINTS : ");
+			
+			//scoreText.setString(scoredisplay.str());
+
+
 
 	while (window.isOpen())
 	{
@@ -109,17 +161,28 @@ int main()
 		PlayerLocation = Vector2f(player.getPosition().x+player.getRadius(), 
 			player.getPosition().y + player.getRadius());
 
-		player.setPosition(Mouse::getPosition(window).x, player.getPosition().y);
-
+		//player.setPosition(Mouse::getPosition(window).x, player.getPosition().y);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+		{
+			// if the player hits the left arrow, then move the character over 
+			// to the left
+			player.move(-4.0f, 0.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+		{
+			// if the player hits the right arrow, then move the character over 
+			// to the right
+			player.move(4.0f, 0.0f);
+		}
 		//ogreshout
 		if (shoutingTime < 5)
 			shoutingTime++;
 
 		//push the button to fire the ogreshout
 
-		if (Mouse::isButtonPressed(Mouse::Left) && shoutingTime >= 5) //Shoot
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) && shoutingTime >= 5) //Shoot
 		{
-			if (Mouse::isButtonPressed)
+			if (Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
 				// if the button is pressed will play sound to say get outta
 				//my house
@@ -177,6 +240,9 @@ int main()
 					if (ogreshout[i].getGlobalBounds().intersects(donkeydebris[j].
 						getGlobalBounds()))
 					{
+						score += 2;//get one point per donkey eleminated
+						
+						//window.draw(scoreText);
 						ogreshout.erase(ogreshout.begin() + i);
 						donkeydebris.erase(donkeydebris.begin() + j);
 						break;
@@ -184,8 +250,16 @@ int main()
 				}
 			}
 		}
+	
+
+		
 		//music.play();// play background music
 		window.draw(bImage);
+
+		
+
+		window.draw(scoreText);
+		
 		
 		//window.clear();//clear the window
 		window.draw(player);//draw the player
@@ -199,7 +273,23 @@ int main()
 		{
 			window.draw(ogreshout[i]);// firing the ogre shout
 		}
-		
+
+		if (score == 100)
+		{
+			gameover.play();
+		}
+
+
+		if (score >= 100)// set the score limit to  100
+		{
+			window.draw(gameOverText);
+			// play the music
+			
+		}
+		if (event.key.code == sf::Keyboard::Escape)
+		{
+			window.close();//if escape key pressed close the game
+		}
 		window.display();
 		window.clear();
 	}
