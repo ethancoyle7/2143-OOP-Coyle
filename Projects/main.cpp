@@ -13,14 +13,14 @@ int main()
 	//srand(time(NULL));
 
 	sf::RenderWindow window(VideoMode(900, 900), "Ethan's swamp");
-	window.setFramerateLimit(50);
-	
+	window.setFramerateLimit(60);
+	sf::Music funsound;
 	sf::Music music;// create instance to play music
-
+	//sf::Music funsound;
 	//we want background music to play while game is playing
 	music.openFromFile("Happy.ogg");
 
-	music.setVolume(50);//set volume half way so no eardrums busted
+	music.setVolume(25);//set volume half way so no eardrums busted
 	music.play();// play the music
 
 	//music.play();
@@ -119,10 +119,19 @@ int main()
 
 		if (Mouse::isButtonPressed(Mouse::Left) && shoutingTime >= 5) //Shoot
 		{
+			if (Mouse::isButtonPressed)
+			{
+				// if the button is pressed will play sound to say get outta
+				//my house
+				funsound.openFromFile("getout.ogg");
+				funsound.setVolume(100);
+				funsound.play();
+			}
+			
 			OgreShout.setPosition(PlayerLocation);
 
 			ogreshout.push_back(CircleShape(OgreShout));
-
+			
 			shoutingTime = 0;//no delay in the shout
 		}
 
