@@ -9,6 +9,8 @@
 
 using namespace sf;
 
+int playerScore{ 0 };// universal global variable to hold the current score
+
 int main()
 {
 	
@@ -90,15 +92,21 @@ int main()
 	player.setTexture(&playerTexture);
 	player.setRadius(50.f);
 
+
+	//determine the player location to debris
+
 	player.setPosition(window.getSize().x / 2 - player.getRadius(),
 		window.getSize().y - player.getRadius() * 2 - 10.f);
 	Vector2f PlayerLocation;//shoot from the center of the player
 
 	int shoutingTime = 0;
-
+	
+	
+	//instances of ogre shout
 	std::vector<CircleShape> ogreshout;
 	ogreshout.push_back(CircleShape(OgreShout));
 
+	//instances of donkies
 	std::vector<RectangleShape> donkeydebris;
 	
 	donkeydebris.push_back(RectangleShape(Debris));
@@ -106,16 +114,12 @@ int main()
 
 	sf::Vector2f position(0, 0);
 
-	
-
-	
-	
-
 		//text has a size
 		//test has a shaper
 		//text has location
 		//text has a fill color
 
+		Text playerTextScore;
 
 		Font text;
 		text.loadFromFile("textfont.ttf");
@@ -124,29 +128,27 @@ int main()
 		gameOverText.setFont(text);
 		gameOverText.setCharacterSize(100);
 		gameOverText.setFillColor(Color::Green);
-		//gameOverText.setColor(Color::Green);
 		gameOverText.setPosition(30.f, 75.0f);
 		gameOverText.setString("GAME OVER!!!!\n\n MAX POINTS \n \nREACHED!!!!!");
 		
 
-		int score = 0;
-		std::stringstream scoredisplay;
-		//text for the score
-		scoredisplay << score;
-
-
-
-		Text scoreText;
 		
-			scoreText.setFont(text);
-			scoreText.setCharacterSize(80);
-			scoreText.setFillColor(Color::Red);
-			scoreText.setPosition(0.0f, 0.0f);
-			scoreText.setString("     POINTS : ");
-			
-			//scoreText.setString(scoredisplay.str());
+		
 
-
+		//creating a score for the game
+		//has a size
+		//has a location
+		// has a color: white
+		
+		sf::Font words;
+		words.loadFromFile("textfont.ttf");
+		playerTextScore.setFont(words);
+		playerTextScore.setCharacterSize(72);
+		//playerTextScore.setColor(Color::Red);
+		playerTextScore.setPosition(sf::Vector2f(125, 0));
+		playerTextScore.setString("0");
+		
+	
 
 	while (window.isOpen())
 	{
@@ -240,29 +242,33 @@ int main()
 					if (ogreshout[i].getGlobalBounds().intersects(donkeydebris[j].
 						getGlobalBounds()))
 					{
-						score += 2;//get one point per donkey eleminated
-						
-						//window.draw(scoreText);
+						++playerScore;
+						std::string playerScoreText = std::to_string(playerScore);
+						playerTextScore.setString(playerScoreText);
+						if (playerScore == 50)
+						{
+
+							//update the game over sequence
+							gameover.play();
+							playerTextScore.setCharacterSize(20);
+							playerTextScore.setPosition(sf::Vector2f(0, 0));
+							playerTextScore.setString("YOU WIN!!!!");
+							window.draw(gameOverText);
+
+
+
+						}
+					
 						ogreshout.erase(ogreshout.begin() + i);
 						donkeydebris.erase(donkeydebris.begin() + j);
 						break;
 					}
 				}
 			}
-		}
-	
-
-		
-		//music.play();// play background music
-		window.draw(bImage);
-
-		
-
-		window.draw(scoreText);
-		
-		
-		//window.clear();//clear the window
+		}	
+		window.draw(bImage);//display the background image
 		window.draw(player);//draw the player
+		window.draw(playerTextScore);// display the scoreboard
 		
 		for (size_t i = 0; i < donkeydebris.size(); i++)
 		{
@@ -274,25 +280,14 @@ int main()
 			window.draw(ogreshout[i]);// firing the ogre shout
 		}
 
-		if (score == 100)
-		{
-			gameover.play();
-		}
-
-
-		if (score >= 100)// set the score limit to  100
-		{
-			window.draw(gameOverText);
-			// play the music
-			
-		}
+		
 		if (event.key.code == sf::Keyboard::Escape)
 		{
 			window.close();//if escape key pressed close the game
 		}
 		window.display();
-		window.clear();
+		window.clear();//clear the window
 	}
 
-	return 0;
+	return 0;//cancel out of program
 }
