@@ -24,21 +24,21 @@ int main()
 	
 	sf::Music startsound;// this will play an entro sound when the game starts
 	startsound.openFromFile("startup.ogg");
-	startsound.setVolume(500);
-	startsound.play();
+	startsound.setVolume(500);// want this to be loud 
+
+	startsound.play();// start the play up song with the background music
+
 	//we want background music to play while game is playing
 
 	sf::Music music;// create instance to play music
 	music.openFromFile("Happy.ogg");
-
 	music.setVolume(25);//set volume half way so no eardrums busted
 	music.play();// play the music
 
 	sf::Music gameover;// create instance to play music
 	gameover.openFromFile("youlose.ogg");
-
 	music.setVolume(20);//set volume half way so no eardrums busted
-	
+	// we will play this inside of the event loop
 
 	// next we create a background image texture
 
@@ -85,12 +85,13 @@ int main()
 	//player has a testure
 	//player has a position given by the mouse
 
-	CircleShape player;
+	CircleShape player; // creation of player
 	player.setFillColor(Color::White);// set white so can see the image
-	sf::Texture playerTexture;
-	playerTexture.loadFromFile("shrek.png");
-	player.setTexture(&playerTexture);
-	player.setRadius(50.f);
+	sf::Texture playerTexture;// we need a texture for the player
+	playerTexture.loadFromFile("shrek.png");// pull image from the file location
+	player.setTexture(&playerTexture);// set the texture box to that of the 
+									  // file image
+	player.setRadius(50.f);// control the radius of the circle for size
 
 
 	//determine the player location to debris
@@ -124,7 +125,7 @@ int main()
 		Font text;
 		text.loadFromFile("textfont.ttf");
 
-		Text gameOverText;
+		Text gameOverText;// create instance of text message
 		gameOverText.setFont(text);
 		gameOverText.setCharacterSize(100);
 		gameOverText.setFillColor(Color::Green);
@@ -146,7 +147,7 @@ int main()
 		playerTextScore.setCharacterSize(72);
 		//playerTextScore.setColor(Color::Red);
 		playerTextScore.setPosition(sf::Vector2f(125, 0));
-		playerTextScore.setString("0");
+		playerTextScore.setString("0");// display the score
 		
 	
 
@@ -168,13 +169,23 @@ int main()
 		{
 			// if the player hits the left arrow, then move the character over 
 			// to the left
-			player.move(-4.0f, 0.0f);
+			player.move(-6.0f, 0.0f);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 		{
 			// if the player hits the right arrow, then move the character over 
 			// to the right
-			player.move(4.0f, 0.0f);
+			player.move(6.0f, 0.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+		{
+			// iff the player hits the up move up 6 frams
+			player.move(0.0f, -6.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+		{
+			// if the player hits the down  arrow button, move down 6 frames
+			player.move(0.0f, 6.0f);
 		}
 		//ogreshout
 		if (shoutingTime < 5)
@@ -278,6 +289,10 @@ int main()
 		for (size_t i = 0; i < ogreshout.size(); i++)
 		{
 			window.draw(ogreshout[i]);// firing the ogre shout
+		}
+		if (playerScore >= 50)// if it is past the max limit
+		{
+			window.draw(gameOverText);// display the game over words
 		}
 
 		
