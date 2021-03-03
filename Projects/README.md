@@ -3,4 +3,4 @@
 |   #    | Folder Link       | Assignment Description                          |
 |------- |-------------------|-------------------------------------------------|
 | [01](.P01) |  [P01](./P01) | [ Program for our first game code UML](./P01)   |
-| [02](.P01) |  [main.cpp](./P01) | [ main program](./P01)   |
+| [02](.main.cpp) |  [main.cpp](./main.cpp) | [ main program](./main.cpp)   |
