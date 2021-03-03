@@ -21,7 +21,7 @@
 *
 *    Files:
 *
-*          1 - main.cpp           this is the main program
+*         	    1 - main.cpp           this is the main program
 *
 *		   2 - shrek.png	      this is the picture texture for player
 *										//SHREK WASOWSKI
@@ -40,7 +40,8 @@
 *		   8- startup.ogg	     this plays intro music when starting up
 *										//whatre you doing in my swamp
 *		   9 - Happy.ogg         this plays the background music// gandalf sax
-*
+*                 
+*                  10- getout.ogg       plays firing sout get outta my house
 ****************************************************************************/
 #include <SFML/Graphics.hpp>
 #include < iostream>
@@ -111,14 +112,14 @@ int main()
 	//debris has different positions
 	//debris has a size
 
-	RectangleShape Debris;
+	RectangleShape Debris;// debris objects
 	Debris.setFillColor(Color::White);//texture fill is white
 	sf::Texture debrisTexture;
 	debrisTexture.loadFromFile("evildonkey.png");
 	//set the texture to this picture
-	Debris.setTexture(&debrisTexture);
+	Debris.setTexture(&debrisTexture);// reference to texture
 	
-	Debris.setSize(Vector2f(70.f, 70.f));
+	Debris.setSize(Vector2f(70.f, 70.f));// size of the debris
 
 
 
@@ -151,8 +152,8 @@ int main()
 	ogreshout.push_back(CircleShape(OgreShout));
 
 	//instances of donkies
-	std::vector<RectangleShape> donkeydebris;
-	
+	std::vector<RectangleShape> donkeydebris;// donkey debris texture rectangles
+	//creating more donkey debris
 	donkeydebris.push_back(RectangleShape(Debris));
 	int debrisSpawnTimer = 0;
 
@@ -163,8 +164,8 @@ int main()
 		//text has location
 		//text has a fill color
 
-		Text playerTextScore;
-
+		
+                 // words for game over sequence to display to the screen
 		Font text;
 		text.loadFromFile("textfont.ttf");
 
@@ -178,12 +179,12 @@ int main()
 
 		
 		
-
+                 // initialization for scoring board and text font 
 		//creating a score for the game
 		//has a size
 		//has a location
 		// has a color: white
-		
+		Text playerTextScore;
 		sf::Font words;
 		words.loadFromFile("textfont.ttf");
 		playerTextScore.setFont(words);
