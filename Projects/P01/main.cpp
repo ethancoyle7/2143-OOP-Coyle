@@ -1,4 +1,47 @@
 
+/****************************************************************************
+*
+*    Author:    Ethan Coyle 
+*    Project:   Program 01 - Game
+*    Course:    CMPS 2143
+*    Semester:  Spring 2021
+*    Description:
+*
+*  In this program i have created a program that runs a game using some
+*     of the conepts discused in Object Oriented Programming     
+*
+*    How to play:
+*
+*		    - spacebar to fire
+*		 	- left arrow button =>  To go left.
+*			- right arrow button =>  To go right
+*		 	- Up arrow button =>  To go UP.
+*		 	- down arrow =>  To go Down
+*           - esc to exit the game
+*
+*    Files:
+*
+*          1 - main.cpp           this is the main program
+*
+*		   2 - shrek.png	      this is the picture texture for player
+*										//SHREK WASOWSKI
+*		   3 - evildonkey.png	  this is the texture for debris // donkeykongs
+*
+*		   4 - ogreshout.png		displays texture for firing from player
+*										// get outta my swamp
+*		   5 - swamppicture.png   this is the background texture// shreks swamp
+*								      
+*		   6 - youlose.ogg;      this plays a clip whenever gameover max points
+*									are reached willy wonka u lose good day
+*
+*		   7 - textfont.ttf      this is the font for the score and gameover
+*									display
+*
+*		   8- startup.ogg	     this plays intro music when starting up
+*										//whatre you doing in my swamp
+*		   9 - Happy.ogg         this plays the background music// gandalf sax
+*
+****************************************************************************/
 #include <SFML/Graphics.hpp>
 #include < iostream>
 #include<cstdlib>
@@ -222,7 +265,7 @@ int main()
 		//donkeydebris
 		if(debrisSpawnTimer < 25)
 			debrisSpawnTimer++;
-
+		// debris spawner
 		if (debrisSpawnTimer >= 10)
 		{
 			Debris.setPosition((rand() % int(window.getSize().x 
@@ -232,7 +275,7 @@ int main()
 			debrisSpawnTimer = 0;
 		}
 
-		for (size_t i = 0; i < donkeydebris.size(); i++)
+		for (size_t i = 0; i < donkeydebris.size(); i++)// start the donkey debris
 		{
 			donkeydebris[i].move(0.f, 5.f);
 
@@ -253,12 +296,12 @@ int main()
 					if (ogreshout[i].getGlobalBounds().intersects(donkeydebris[j].
 						getGlobalBounds()))
 					{
-						++playerScore;
+						++playerScore;//increment the score
 						std::string playerScoreText = std::to_string(playerScore);
 						playerTextScore.setString(playerScoreText);
-						if (playerScore == 50)
+						if (playerScore == 50)// if the score is 50
 						{
-
+							//display the scoreboard
 							//update the game over sequence
 							gameover.play();
 							playerTextScore.setCharacterSize(20);
