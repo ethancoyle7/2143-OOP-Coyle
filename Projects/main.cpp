@@ -376,7 +376,7 @@ int main()
 		}
 
 		// shouting at debris
-		for (size_t i = 0; i < Player.ogreshout.size(); i++)
+		for (unsigned int i = 0; i < Player.ogreshout.size(); i++)
 		{
 			Player.ogreshout[i].shape.move(10.f, 0.f);
 			if (Player.ogreshout[i].shape.getPosition().x >
@@ -387,11 +387,11 @@ int main()
 				break;
 			}
 			// loops for collision
-			for (size_t k = 0; k < donkeydebris.size(); k++)
+			for (unsigned int j = 0; j < donkeydebris.size(); j++)
 			{	// This if statement handle the the collision
 				// with the DonkeyDebris.
 				if (Player.ogreshout[i].shape.getGlobalBounds().
-					intersects(donkeydebris[k].shape.getGlobalBounds()))
+					intersects(donkeydebris[j].shape.getGlobalBounds()))
 				{
 					++PlayerScore;// increment the PlayerScore by one
 					string playerScoreText = std::to_string
@@ -408,7 +408,7 @@ int main()
 						window.draw(gameOverText);
 
 					}
-					donkeydebris.erase(donkeydebris.begin() + k);
+					donkeydebris.erase(donkeydebris.begin() + j);
 					// get rid of the debris	   
 					//get rid of the ogrshout and get read for next 
 					Player.ogreshout.erase(Player.ogreshout.begin() + i);
@@ -430,7 +430,7 @@ int main()
 								   //donkies
 			}
 
-			for (size_t i = 0; i < donkeydebris.size(); i++)
+			for (unsigned int i = 0; i < donkeydebris.size(); i++)
 			{
 				donkeydebris[i].shape.move(-6.0f, 0.0f);
 				// Using this to handle the DonkeyDebris movements.
@@ -460,14 +460,14 @@ int main()
 		window.draw(bImage);// draw the background
 		window.draw(Player.shape); //draw the player to the screen
 
-		for (size_t i = 0; i < Player.ogreshout.size(); i++)// create
+		for (unsigned int i = 0; i < Player.ogreshout.size(); i++)// create
 														//ogre shout		   
 		{
 			window.draw(Player.ogreshout[i].shape);
 		}
 
 		// Using this for loop to Display the DonkeyDebris
-		for (size_t i = 0; i < donkeydebris.size(); i++)
+		for (unsigned int i = 0; i < donkeydebris.size(); i++)
 		{
 			window.draw(donkeydebris[i].shape);// create the debris
 		}
