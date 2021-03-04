@@ -1,14 +1,14 @@
 
 /****************************************************************************
 *
-*    Author:    Ethan Coyle 
+*    Author:    Ethan Coyle
 *    Project:   Program 01 - Game
 *    Course:    CMPS 2143
 *    Semester:  Spring 2021
-*    Description:
+*    What does it do?:
 *
 *  In this program i have created a program that runs a game using some
-*     of the conepts discused in Object Oriented Programming     
+*     of the conepts discused in Object Oriented Programming
 *
 *    How to play:
 *
@@ -21,72 +21,198 @@
 *
 *    Files:
 *
-*         	    1 - main.cpp           this is the main program
+* -> main.cpp           this is the main program
 *
-*		   2 - shrek.png	      this is the picture texture for player
-*										//SHREK WASOWSKI
-*		   3 - evildonkey.png	  this is the texture for debris // donkeykongs
+* -> shrek.png	      this is the picture texture for player
+*					//SHREK WASOWSKI
+* -> evildonkey.png	  this is the texture for debris // donkeykongs
 *
-*		   4 - ogreshout.png		displays texture for firing from player
+* -> ogreshout.png		displays texture for firing from player
 *										// get outta my swamp
-*		   5 - swamppicture.png   this is the background texture// shreks swamp
-*								      
-*		   6 - youlose.ogg;      this plays a clip whenever gameover max points
-*									are reached willy wonka u lose good day
+* -> swamppicture.png   this is the background texture// shreks swamp
 *
-*		   7 - textfont.ttf      this is the font for the score and gameover
+* -> youlose.ogg;      this plays a clip whenever gameover max points
+*						are reached willy wonka u lose good day
+*
+*-> textfont.ttf      this is the font for the score and gameover
 *									display
 *
-*		   8- startup.ogg	     this plays intro music when starting up
+* -> startup.ogg	     this plays intro music when starting up
 *										//whatre you doing in my swamp
-*		   9 - Happy.ogg         this plays the background music// gandalf sax
-*                 
-*                  10- getout.ogg       plays firing sout get outta my house
-****************************************************************************/
-#include <SFML/Graphics.hpp>
-#include < iostream>
+*
+* -> Happy.ogg         this plays the background music// gandalf sax
+*
+* -> getout.ogg        this sound file hagrid shouting getout when fire
+*********************************************************************/
+
+#include <SFML/Graphics.hpp>// to display graphics
+#include < iostream>// in and outfile stream
 #include<cstdlib>
-#include "SFML/Audio.hpp"
-#include<sstream>
+#include "SFML/Audio.hpp"// for music 
+#include<sstream>// for string streaming
 
-#include<vector>// using vectors for debris,enemies and ogreshout
+using namespace std;// using starndar namespace
+using namespace sf;// sfml documentation
 
-using namespace sf;
+int PlayerScore = { 0 }; // start the PlayerScore at 0 global variable
 
-int playerScore{ 0 };// universal global variable to hold the current score
+/*
+*    Class Name: ogreshout
+*
+*What does it do?:
+*
+* -> this class creates ogreshout with a sprite using picture from 
+* -> our file folder
+*
+* Public Methods:
+*
+* -> ogreshout()  Default Constructor
+* -> ~ogreshout() Destructor
+*
+* Private Methods:
+*
+*_> have no private methods
+*
+*/
+class OgreShout
+{
+public:
+	Sprite shape;  // create sprite shape to hold ogre shout                              
 
-int main()
+	OgreShout(Texture *texture, Vector2f pos);// ogreshout texture
+
+	~OgreShout();// destructor for ogreshout
+};
+
+/**
+ * Public :  ogreshout
+ *
+ * What does it do?:
+ *
+ *-> Has Default Constructor to create ogreshout
+ *
+ * Parameteres:
+ *
+ * ->this class contains pointer to texture for ogreshouts
+ * ->as well as a vector to poisiont those shouts
+ *          
+ *
+ * What does it Return?:
+ *
+ * -> returns a nul value        
+ */
+OgreShout::OgreShout(Texture *texture, Vector2f pos)
+{
+	this->shape.setTexture(*texture);// initialize shape            
+
+	this->shape.setScale(0.7f, 0.7f);// set the size 
+
+	this->shape.setPosition(pos); // set the position pointer of 
+	                             //this to poistion
+}
+
+/**
+ * Public :  ~ogreshout
+ *
+ * What does it do?:
+ *   -has a  Destructor
+ *
+ * Parameteres:
+ * -> there are no parameter
+ *
+ * What does it Return?:
+ * 
+ * -> Returns a nul value
+ */
+OgreShout::~OgreShout()// desturctor
+{
+	//cout << "ogreshout destructor" << endl;
+};
+
+class Player // class named player
+{
+
+public:
+	Sprite shape;  // sprite to hold shape of player and shout
+	Texture *texture;// texture reference
+
+	
+	vector<OgreShout> ogreshout;// vector of ogreshouts at
+									 // our disposal
+	Player(Texture *texture);// set the texture from picture
+	
+	~Player();//destructor of player
+};
+
+/**
+ * Public :  Player
+ *
+ * What does it do?:
+ * -> has Default Constructor to create instance of player
+ *
+ * Parameteres:
+ * _-> has Texture pointer for file to player picture
+ *
+ * What does it Return?:
+ * 
+ *-> returns NULL value
+ */
+Player::Player(Texture *texture)// dot operator for player
+{
+	this->texture = texture;// initialize texture for player                     
+	this->shape.setTexture(*texture);// reference texture of player
+	this->shape.setScale(0.1f, 0.1f);;   //set the size of player        
+}
+
+Player::~Player()
+{
+	//cout << "I am shrek get outta me swamp" << endl;
+};
+
+class DonkeyDebris
+{
+public:
+	Sprite shape; 
+	DonkeyDebris(Texture *texture, Vector2u windowSize);
+
+	~DonkeyDebris();
+};
+
+// dot operator for donkey class
+DonkeyDebris::DonkeyDebris(Texture *texture, Vector2u windowSize)
 {
 	
 
-	sf::RenderWindow window(VideoMode(900, 900), "Ethan's swamp");
+	this->shape.setTexture(*texture);// setting the texture
+
+	this->shape.setScale(0.05f, 0.05f); //set scale of the debris
+
+
+	// Setting the position of our DonkeyDebris in window at random
+	// positions indsied the main window
+	this->shape.setPosition(windowSize.x - this->
+		shape.getGlobalBounds().width,rand() % (int)(windowSize.y
+			- this->shape.getGlobalBounds().height));
+}
+
+// dot operator for donkey debris destructor cout<<
+DonkeyDebris::~DonkeyDebris()
+{
+	
+}; // default constructor
+
+
+// main function now
+int main()
+{
+	// set the window frame sizes 
+	RenderWindow window(VideoMode(900, 900), "Ethan Coyle's swamp ", 
+		Style::Default);
+
 	window.setFramerateLimit(40);
 
-	// first we are creating sound files to cope with interactions
 
-	sf::Music funsound;
-	
-	sf::Music startsound;// this will play an entro sound when the game starts
-	startsound.openFromFile("startup.ogg");
-	startsound.setVolume(500);// want this to be loud 
-
-	startsound.play();// start the play up song with the background music
-
-	//we want background music to play while game is playing
-
-	sf::Music music;// create instance to play music
-	music.openFromFile("Happy.ogg");
-	music.setVolume(25);//set volume half way so no eardrums busted
-	music.play();// play the music
-
-	sf::Music gameover;// create instance to play music
-	gameover.openFromFile("youlose.ogg");
-	music.setVolume(20);//set volume half way so no eardrums busted
-	// we will play this inside of the event loop
-
-	// next we create a background image texture
-
-
+	// setting still background
 	sf::Texture background;//set texture for background
 	sf::Sprite bImage;//name the background image
 	background.loadFromFile("swamppicture.png");// image for the background
@@ -95,259 +221,273 @@ int main()
 	bImage.setPosition(1, 1);//set in the center
 	sf::Vector2u size;
 	size = background.getSize();// grabe the size to set
-
-	//we are creating a firing material to shoot all the donkies
-	
-	CircleShape OgreShout;
-	OgreShout.setFillColor(Color::White);
-	sf::Texture OgreShoutTexture;
-	OgreShoutTexture.loadFromFile("ogreshout.png");
-	OgreShout.setTexture(&OgreShoutTexture);
-	OgreShout.setRadius(50.f);
-
-
-	//debris is created
-	//debris has a shape
-	//debris has color
-	//debris has different positions
-	//debris has a size
-
-	RectangleShape Debris;// debris objects
-	Debris.setFillColor(Color::White);//texture fill is white
-	sf::Texture debrisTexture;
-	debrisTexture.loadFromFile("evildonkey.png");
-	//set the texture to this picture
-	Debris.setTexture(&debrisTexture);// reference to texture
-	
-	Debris.setSize(Vector2f(70.f, 70.f));// size of the debris
-
-
-
-	//create a circleshaped player with a picture as the texture
-	//player has a size
-	//player has a color
-	//player has a testure
-	//player has a position given by the mouse
-
-	CircleShape player; // creation of player
-	player.setFillColor(Color::White);// set white so can see the image
-	sf::Texture playerTexture;// we need a texture for the player
-	playerTexture.loadFromFile("shrek.png");// pull image from the file location
-	player.setTexture(&playerTexture);// set the texture box to that of the 
-									  // file image
-	player.setRadius(50.f);// control the radius of the circle for size
-
-
-	//determine the player location to debris
-
-	player.setPosition(window.getSize().x / 2 - player.getRadius(),
-		window.getSize().y - player.getRadius() * 2 - 10.f);
-	Vector2f PlayerLocation;//shoot from the center of the player
-
-	int shoutingTime = 0;
-	
-	
-	//instances of ogre shout
-	std::vector<CircleShape> ogreshout;
-	ogreshout.push_back(CircleShape(OgreShout));
-
-	//instances of donkies
-	std::vector<RectangleShape> donkeydebris;// donkey debris texture rectangles
-	//creating more donkey debris
-	donkeydebris.push_back(RectangleShape(Debris));
-	int debrisSpawnTimer = 0;
-
-	sf::Vector2f position(0, 0);
-
-		//text has a size
-		//test has a shaper
-		//text has location
-		//text has a fill color
-
-		
-                 // words for game over sequence to display to the screen
-		Font text;
-		text.loadFromFile("textfont.ttf");
-
-		Text gameOverText;// create instance of text message
-		gameOverText.setFont(text);
-		gameOverText.setCharacterSize(100);
-		gameOverText.setFillColor(Color::Green);
-		gameOverText.setPosition(30.f, 75.0f);
-		gameOverText.setString("GAME OVER!!!!\n\n MAX POINTS \n \nREACHED!!!!!");
-		
-
-		
-		
-                 // initialization for scoring board and text font 
-		//creating a score for the game
-		//has a size
-		//has a location
-		// has a color: white
-		Text playerTextScore;
-		sf::Font words;
-		words.loadFromFile("textfont.ttf");
-		playerTextScore.setFont(words);
-		playerTextScore.setCharacterSize(72);
-		//playerTextScore.setColor(Color::Red);
-		playerTextScore.setPosition(sf::Vector2f(125, 0));
-		playerTextScore.setString("0");// display the score
-		
 	
 
-	while (window.isOpen())
+	// creting instance of sound to start a startup sound
+	sf::Music startsound;// this will play an entro sound when the game starts
+	startsound.openFromFile("startup.ogg"); // whatre you doing in me swamp
+	startsound.setVolume(500);// want this to be loud 
+	startsound.play();// start the play up song with the background music
+
+
+	// instance created to start background music to play through the game
+	// gandalf sax
+	sf::Music music;// create instance to play music
+	music.openFromFile("Happy.ogg");
+	music.setVolume(25);//set volume half way so no eardrums busted
+	music.play();// play the music
+
+
+	// another instance of sound playing to play when the game is over
+	// willy wonka you lose
+	sf::Music gameover;// create instance to play music
+	gameover.openFromFile("youlose.ogg");
+	music.setVolume(20);//set volume half way so no eardrums busted
+
+
+	// firing sounds from shrek wazowski
+	sf::Music funsound;
+	
+	
+	
+	
+	// load text font from file
+	Font text;
+	text.loadFromFile("textfont.ttf");
+
+	Text gameOverText;// create instance of text message
+	gameOverText.setFont(text);
+	gameOverText.setCharacterSize(100);
+	gameOverText.setFillColor(Color::Green);
+	gameOverText.setPosition(30.f, 75.0f);
+	gameOverText.setString("GAME OVER!!!!\n\n MAX POINTS \n \nREACHED!!!!!");
+	// Initialize and Display the ScoreBoard text.
+	
+
+	// create a PlayerScore counter to calculate the PlayerScore
+	sf::Font words;
+	words.loadFromFile("textfont.ttf");
+	Text playerTextScore;
+	playerTextScore.setFont(words);// set the PlayerScore font to words
+	playerTextScore.setCharacterSize(72);// set the size of the PlayerScore
+	//playerTextScore.setColor(Color::Red);
+	playerTextScore.setPosition(sf::Vector2f(125, 0));// set the position
+	//top left x 125, y 0
+	playerTextScore.setString("0");// display the PlayerScore
+	
+
+	// fiel for player texture
+	Texture playertexture;
+	playertexture.loadFromFile("shrek.png");// load from file
+
+	// picture file for derbis
+	Texture Flyingdebris;
+	Flyingdebris.loadFromFile("evildonkey.png");// load texture from file
+
+	// texture picture for ogreshout
+	Texture shouting;
+	shouting.loadFromFile("ogreshout.png");// load shout from file
+
+	Player Player(&playertexture); // initialize the player with texture
+	float ogreshout = 20.f;		               
+
+	float Donkey_Debris = 0.0f;	 // float variable to hold donkey debris
+	vector<DonkeyDebris> donkeydebris; // DonkeyDebris initialize.
+
+	
+	//create while loop to star the event
+	while (window.isOpen())  // while window is open run event command                                
 	{
-		Event event;//start the event
-		while (window.pollEvent(event))// while is open, run the event
+		Event event;
+		while (window.pollEvent(event))
 		{
-			if (event.type == Event::Closed)// while closed event
+			if (event.type == Event::Closed)// if event closed, close         
 				window.close();
 		}
+		// using control commansds to move player
 
-	//update the player position
-		PlayerLocation = Vector2f(player.getPosition().x+player.getRadius(), 
-			player.getPosition().y + player.getRadius());
+			//if up is pressed move up
+		if (Keyboard::isKeyPressed(Keyboard::Up))
+		{
+			Player.shape.move(0.f, -6.f);
+		}
+		//if left pressed, move left
+		if (Keyboard::isKeyPressed(Keyboard::Left))
+		{
+			Player.shape.move(-6.f, 0.f);
+		}
+		// if down is pressed , move down
+		if (Keyboard::isKeyPressed(Keyboard::Down))
+		{
+			Player.shape.move(0.f, 6.f);
+		}
 
-		//player.setPosition(Mouse::getPosition(window).x, player.getPosition().y);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+		// if right is pressed , move right
+		if (Keyboard::isKeyPressed(Keyboard::Right))
 		{
-			// if the player hits the left arrow, then move the character over 
-			// to the left
-			player.move(-6.0f, 0.0f);
+			Player.shape.move(6.f, 0.f);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-		{
-			// if the player hits the right arrow, then move the character over 
-			// to the right
-			player.move(6.0f, 0.0f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-		{
-			// iff the player hits the up move up 6 frams
-			player.move(0.0f, -6.0f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-		{
-			// if the player hits the down  arrow button, move down 6 frames
-			player.move(0.0f, 6.0f);
-		}
-		//ogreshout
-		if (shoutingTime < 5)
-			shoutingTime++;
 
-		//push the button to fire the ogreshout
+		// we need to create bounds for player
 
-		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) && shoutingTime >= 5) //Shoot
+		if (Player.shape.getPosition().x <= 0)
+		{// Left
+			Player.shape.setPosition(0.f, Player.shape.getPosition().y);
+		}
+
+		if (Player.shape.getPosition().x >= window.getSize().x -
+			Player.shape.getGlobalBounds().width)
 		{
-			if (Keyboard::isKeyPressed(sf::Keyboard::Space))
+			Player.shape.setPosition(window.getSize().x - Player.shape.
+				getGlobalBounds().width, Player.shape.getPosition().y);
+		}
+		if (Player.shape.getPosition().y <= 0)
+		{
+			Player.shape.setPosition(Player.shape.getPosition().x, 0.f);
+		}
+		if (Player.shape.getPosition().y >= window.getSize().y - Player.
+			shape.getGlobalBounds().height)
+		{// Bottom
+			Player.shape.setPosition(Player.shape.getPosition().x,
+				window.getSize().y - Player.shape.getGlobalBounds().height);
+		}
+		// Update Controls
+		if (ogreshout < 5)
+			ogreshout ++;
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) &&
+			ogreshout >= 5)
+		{ // if the spacebar is pressed
+			if (Keyboard::isKeyPressed(sf::Keyboard::Space))// ogre shout 
+				//increases the speed of travelling
 			{
 				// if the button is pressed will play sound to say get outta
 				//my house
+				
 				funsound.openFromFile("getout.ogg");
 				funsound.setVolume(100);
 				funsound.play();
 			}
-			
-			OgreShout.setPosition(PlayerLocation);
 
-			ogreshout.push_back(CircleShape(OgreShout));
-			
-			shoutingTime = 0;//no delay in the shout
+			// Calling the vector  ogreshouts to shoot
+			Player.ogreshout.push_back(OgreShout(&shouting, Player.
+				shape.getPosition()));
+
+			ogreshout = 0;// reset the shout meter
 		}
 
-		for (size_t i = 0; i < ogreshout.size(); i++)
+		// shouting at debris
+		for (unsigned int i = 0; i < Player.ogreshout.size(); i++)
 		{
-			ogreshout[i].move(0.f, -10.f);
-
-			if(ogreshout[i].getPosition().y <= 0)
-				ogreshout.erase(ogreshout.begin() + i);
-		}
-
-		//donkeydebris
-		if(debrisSpawnTimer < 25)
-			debrisSpawnTimer++;
-		// debris spawner
-		if (debrisSpawnTimer >= 10)
-		{
-			Debris.setPosition((rand() % int(window.getSize().x 
-				- Debris.getSize().x)), 0.f);
-			donkeydebris.push_back(RectangleShape(Debris));
-
-			debrisSpawnTimer = 0;
-		}
-
-		for (size_t i = 0; i < donkeydebris.size(); i++)// start the donkey debris
-		{
-			donkeydebris[i].move(0.f, 5.f);
-
-			if (donkeydebris[i].getPosition().y > window.getSize().y)
+			Player.ogreshout[i].shape.move(10.f, 0.f);
+			if (Player.ogreshout[i].shape.getPosition().x >
+				window.getSize().x)
 			{
-				donkeydebris.erase(donkeydebris.begin() + i);
+				// Whenever the shout goes out of bounds, delete
+				Player.ogreshout.erase(Player.ogreshout.begin() + i);
+				break;
 			}
-		}
-
-		//this nexted if statement will demonstrate the collision
-
-		if (!donkeydebris.empty() && !ogreshout.empty())
-		{
-			for (size_t i = 0; i < ogreshout.size(); i++)
-			{
-				for (size_t j = 0; j < donkeydebris.size(); j++)
+			// loops for collision
+			for (unsigned int j = 0; j < donkeydebris.size(); j++)
+			{	// This if statement handle the the collision
+				// with the DonkeyDebris.
+				if (Player.ogreshout[i].shape.getGlobalBounds().
+					intersects(donkeydebris[j].shape.getGlobalBounds()))
 				{
-					if (ogreshout[i].getGlobalBounds().intersects(donkeydebris[j].
-						getGlobalBounds()))
+					++PlayerScore;// increment the PlayerScore by one
+					string playerScoreText = std::to_string
+					(PlayerScore);
+					playerTextScore.setString(playerScoreText);
+					if (PlayerScore == 50)
 					{
-						++playerScore;//increment the score
-						std::string playerScoreText = std::to_string(playerScore);
-						playerTextScore.setString(playerScoreText);
-						if (playerScore == 50)// if the score is 50
-						{
-							//display the scoreboard
-							//update the game over sequence
-							gameover.play();
-							playerTextScore.setCharacterSize(20);
-							playerTextScore.setPosition(sf::Vector2f(0, 0));
-							playerTextScore.setString("YOU WIN!!!!");
-							window.draw(gameOverText);
 
+						//update the gameover
+						gameover.play();
+						playerTextScore.setCharacterSize(20);
+						playerTextScore.setPosition(sf::Vector2f(0, 0));
+						playerTextScore.setString("YOU WIN!!!!");
+						window.draw(gameOverText);
 
-
-						}
-					
-						ogreshout.erase(ogreshout.begin() + i);
-						donkeydebris.erase(donkeydebris.begin() + j);
-						break;
 					}
+					donkeydebris.erase(donkeydebris.begin() + j);
+					// get rid of the debris	   
+					//get rid of the ogrshout and get read for next 
+					Player.ogreshout.erase(Player.ogreshout.begin() + i);
+					break;
+				}
+
+			}
+
+
+			if (Donkey_Debris < 25)  // when less than 25, create debris                                         
+				Donkey_Debris++;
+
+			if (Donkey_Debris >= 25)// spawn donkey debris
+			{
+				donkeydebris.push_back(DonkeyDebris(&Flyingdebris,
+					window.getSize()));
+
+				Donkey_Debris = 0; // reset so can start more invasive 
+								   //donkies
+			}
+
+			for (unsigned int i = 0; i < donkeydebris.size(); i++)
+			{
+				donkeydebris[i].shape.move(-6.0f, 0.0f);
+				// Using this to handle the DonkeyDebris movements.
+
+				if (donkeydebris[i].shape.getPosition().x <= 0 -
+					donkeydebris[i].shape.getGlobalBounds().width)
+				{
+					donkeydebris.erase(donkeydebris.begin() + i);
+					// If DonkeyDebris is out of the window delete that 
+					//DonkeyDebris.
+					break;
+				}
+
+				if (donkeydebris[i].shape.getGlobalBounds().intersects(
+					Player.shape.getGlobalBounds()))
+				{
+					//if we get hit by donkey debris
+					donkeydebris.erase(donkeydebris.begin() + i);
+					--PlayerScore;// decrement the PlayerScore by one
+
+					break;
 				}
 			}
-		}	
-		window.draw(bImage);//display the background image
-		window.draw(player);//draw the player
-		window.draw(playerTextScore);// display the scoreboard
-		
-		for (size_t i = 0; i < donkeydebris.size(); i++)
-		{
-			window.draw(donkeydebris[i]);//draw the donkey debris
 		}
 
-		for (size_t i = 0; i < ogreshout.size(); i++)
+		window.clear(); //clear the window for drawing to screen
+		window.draw(bImage);// draw the background
+		window.draw(Player.shape); //draw the player to the screen
+
+		for (unsigned int i = 0; i < Player.ogreshout.size(); i++)// create
+														//ogre shout		   
 		{
-			window.draw(ogreshout[i]);// firing the ogre shout
-		}
-		if (playerScore >= 50)// if it is past the max limit
-		{
-			window.draw(gameOverText);// display the game over words
+			window.draw(Player.ogreshout[i].shape);
 		}
 
-		
+		// Using this for loop to Display the DonkeyDebris
+		for (unsigned int i = 0; i < donkeydebris.size(); i++)
+		{
+			window.draw(donkeydebris[i].shape);// create the debris
+		}
+
+		//window.draw(PlayerScoreText); // display the PlayerScore
+		window.draw(playerTextScore);// draw the scoreboard
+
+		if (PlayerScore >= 50)// set the limit of the score
+		{
+			window.draw(gameOverText);// whenever max points reached
+										//display gameover
+		}
+
+		window.display(); // display event to the window
+
 		if (event.key.code == sf::Keyboard::Escape)
 		{
 			window.close();//if escape key pressed close the game
 		}
-		window.display();
-		window.clear();//clear the window
 	}
 
-	return 0;//cancel out of program
+return 0;// close out of the program
 }
-  
