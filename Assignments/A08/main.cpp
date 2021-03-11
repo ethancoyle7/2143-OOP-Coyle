@@ -1,3 +1,8 @@
+//Ethan Coyle
+//Assignment 8 create class to combine colors in color pallete
+//Dr. Griffin-oop 2143
+//Due 3/10/21
+
 #include <iostream>
 
 using namespace std;
