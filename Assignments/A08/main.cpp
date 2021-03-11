@@ -68,6 +68,28 @@ public:
 
 };
 
+
+
+class ColorPallete : public RgbColor//class names color palatte
+ //that has a access to the rgbcolor class to grab the colors
+{
+private:
+    vector<int> ColorMix;//pass in private colormix palate
+
+public:
+
+    const vector<int> &get_ColorMix() const
+    {
+        return ColorMix;//grab the colors and combine
+    }
+
+    void addColor(const int &color)//instance to add a color
+    {
+        ColorMix.push_back(color);
+    }
+};
+
+
 RgbColor RgbColor::operator+(const RgbColor& other)
 {
     int red = (this->red + other.red) / 2;
@@ -104,6 +126,8 @@ friend ostream& operator<<(ostream& outfile,const RgbColor& other)
 
 int main() 
 {
+    vector<RgbColor>ColorMix;// creating vector of color mixing pallatee
+ 
     RgbColor C1(255,200,11);  //create instance of c1
     RgbColor C2(100,14,123);// create instance of c2
     RgbColor C3 = C1 + C2;// first color and second color add together addition overload assign to c3
