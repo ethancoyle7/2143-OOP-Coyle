@@ -53,3 +53,20 @@
 -> is tracked whenever it moves across the screen
 
 -> collision detection is recorded when player shout intersects with shout
+
+## Scoring
+
+#### Image of active score tally
+
+
+<img src="Scoring.png" width="150">
+
+
+-> this scoring is shown in the top left corner
+
+-> each time a collision detection is detected between
+
+->ogreshout and donkey debris, point is actively incremented by 1
+
+-> the gameover sequence is preset to reach 50 points
+
