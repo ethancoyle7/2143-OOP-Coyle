@@ -14,7 +14,7 @@
 #### Image used to track collision detection
 
 
-![text if link is broke](ogreshout.png)
+<img src="ogreshout.png" width="150">
 
 
 -> for the collision detection i used the ogreshout that fires off from
@@ -29,7 +29,9 @@
 
 #### Picture Texture of the player
 
-![text if link is broke](shrek.png)
+
+<img src="shrek.png" width="150">
+
 
 -> the player starts the game by holding down the spacebar and in turn this 
 
@@ -42,7 +44,8 @@
 
 #### picture of the debris
 
-<img src="evildonkey.png" width="100">
+
+<img src="evildonkey.png" width="150">
 
 
 -> the flying debris has a texture of the Donkey which position
