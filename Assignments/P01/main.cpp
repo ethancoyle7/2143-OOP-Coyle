@@ -215,7 +215,7 @@ int main()
 	// setting still background
 	sf::Texture background;//set texture for background
 	sf::Sprite bImage;//name the background image
-	background.loadFromFile("swamppicture.png");// image for the background
+	background.loadFromFile("BackgroundPicture.png");// image for the background
 	bImage.setScale(1.2f, 1.3f);// set the background image to fill the screen
 	bImage.setTexture(background);//texture will hold the background
 	bImage.setPosition(1, 1);//set in the center

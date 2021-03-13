@@ -82,6 +82,16 @@
 
 -> scoreboard also has a set size and actively increments
 
+## Font
+
+-> created a link to style the font for gameover and the score
+
+-> the font is named textfont.tff
+
+-> they both have a size and poistion and the score is actively incremented 
+
+-> each time the player creates collision
+
 
 ## Gameplay Pictures
 
@@ -103,7 +113,7 @@
 
 ## additional add ons
 
-#### added three music files
+#### added FOUR music files
 
 -> Happy.ogg  - this is the background music that plays throughout the game
 
@@ -111,7 +121,9 @@
 
 -> youlose.ogg - This fires up whenever the max points are reached and game over
 
-#### added a background file
+-> startup.ogg - this fires up shrek shouting what are you doing in my swamp 
+
+#### added a BACKGROUND image
 
 <img src="BackgroundPicture.png" width="150">
 
@@ -119,15 +131,8 @@
 
 -> with a preset image
 
-#### Font
 
--> created a link to style the font for gameover and the score
 
--> the font is named textfont.tff
-
--> they both have a size and poistion and the score is actively incremented 
-
--> each time the player creates collision
 
 
 
