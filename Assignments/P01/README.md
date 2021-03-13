@@ -39,6 +39,10 @@
 
 -> upon collsion, it calls collision detection
 
+-> the player is also able to move left,right,up down and
+
+-> has a position and size
+
 
 ## Debris
 
@@ -54,6 +58,12 @@
 
 -> collision detection is recorded when player shout intersects with shout
 
+-> the debris position starts from the right of the screen and is tracked
+
+-> inside of the window frame if the allotted number is not on the screen, then 
+
+-> another one comes in the window
+
 ## Scoring
 
 #### Image of active score tally
@@ -62,11 +72,67 @@
 <img src="Scoring.png" width="150">
 
 
--> this scoring is shown in the top left corner
+-> this scoring is shown in the top left corner(position)
 
 -> each time a collision detection is detected between
 
-->ogreshout and donkey debris, point is actively incremented by 1
+-> ogreshout and donkey debris, point is actively incremented by 1
 
 -> the gameover sequence is preset to reach 50 points
+
+-> scoreboard also has a set size and actively increments
+
+
+## Gameplay Pictures
+
+#### Active Gameplay
+
+<img src="ActiveGamePlay.png" width="150">
+
+-> this is a screenshot of the active game playing 
+
+
+#### GameOver
+
+<img src="GameOverPicture.png" width="150">
+
+-> this a screenshot of the gameover sequence once max points reached
+
+-> if player hit escape button, exit out of the game
+
+
+## additional add ons
+
+#### added three music files
+
+-> Happy.ogg  - this is the background music that plays throughout the game
+
+-> getout.ogg - this plays whenever the player hits the spacebar
+
+-> youlose.ogg - This fires up whenever the max points are reached and game over
+
+#### added a background file
+
+<img src="BackgroundPicture.png" width="150">
+
+-> with this created a size and texture for the background 
+
+-> with a preset image
+
+#### Font
+
+-> created a link to style the font for gameover and the score
+
+-> the font is named textfont.tff
+
+-> they both have a size and poistion and the score is actively incremented 
+
+-> each time the player creates collision
+
+
+
+
+
+
+
 
