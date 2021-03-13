@@ -42,8 +42,10 @@
 
 #### picture of the debris
 
+<img src="evildonkey.png" width="48">
 
-![text if link is broke](evildonkey.png)
+
+// ![text if link is broke](evildonkey.png)
 
 
 -> the flying debris has a texture of the Donkey which position
