@@ -87,14 +87,14 @@
 
 #### Active Gameplay
 
-<img src="ActiveGamePlay.png" width="150">
+<img src="ActiveGameplay.png" width="250">
 
 -> this is a screenshot of the active game playing 
 
 
 #### GameOver
 
-<img src="GameOverPicture.png" width="150">
+<img src="GameOverPicture.png" width="250">
 
 -> this a screenshot of the gameover sequence once max points reached
 
