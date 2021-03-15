@@ -173,7 +173,7 @@ RgbColor ColorMix1, ColorMix2;
 // initialize all the Colors as integers
 int RedColor, GreenColor, BlueColor;
 
-cout << "ether the value for red, blue and green " << endl;
+cout << "ether value for red green and blue " << endl;
 //user inputs values
 cin >> RedColor >> BlueColor >> GreenColor;
 //intialize the functions to set the values of each of the
@@ -181,50 +181,52 @@ cin >> RedColor >> BlueColor >> GreenColor;
 //user inputted values go to the setter functions to set
 //these values in
 
-	ColorMix1.SetRedColor(RedColor);
-	ColorMix1.SetGreenColor(GreenColor);
-	ColorMix1.SetBlueColor(BlueColor);
+ColorMix1.SetRedColor(RedColor);
+ColorMix1.SetGreenColor(GreenColor);
+ColorMix1.SetBlueColor(BlueColor);
 
 //now we must utilize the get functions to obtain the stored value
 //GETTING RBG COLORS
-    ColorMix1.GetRedColor();
-	ColorMix1.GetGreenColor();
-	ColorMix1.GetBlueColor();
-    ColorMix1.AddColor(ColorMix1);//adding these to
-    //instance and colorpallete
+ColorMix1.GetRedColor();
+ColorMix1.GetGreenColor();
+ColorMix1.GetBlueColor();
+ColorMix1.AddColor(ColorMix1);//adding these to
+//instance and colorpallete
 
     //output the Color mixture
 
-    cout<<"our mixture to Color pallete is : "<<
+cout<<"our mixture to Color pallete is : "<<
       ColorMix1 <<endl;
 
 
     // creating another mixture to our concoction Color pallete
 
-    cout << "Enter the Colors for another Color pallete mixture "
+cout << "Enter the Colors for another Color pallete mixture "
          <<" in the form Red, Green and then Blue"<<"\n\n";
     //user inputted integers
-	cin >> RedColor >> BlueColor >> GreenColor;
+cin >> RedColor >> BlueColor >> GreenColor;
 
     //call setter functions to set newvalues
 
-	ColorMix2.SetRedColor(RedColor);//set redColor
-	ColorMix2.SetGreenColor(GreenColor);//setgreenColor
-	ColorMix2.SetBlueColor(BlueColor);//setblueColor
+ColorMix2.SetRedColor(RedColor);//set redColor
+ColorMix2.SetGreenColor(GreenColor);//setgreenColor
+ColorMix2.SetBlueColor(BlueColor);//setblueColor
 
     //call getter functions to obtain the Colors
 
     //utilize the class rgb Color to obtain the getters
     //getting RBG COLORS
-    ColorMix2.GetRedColor();//get new red
-	ColorMix2.GetGreenColor();//get new green
-	ColorMix2.GetBlueColor();// get new blue
-	ColorMix2.AddColor(ColorMix2);// add this Color mix to stored
+ColorMix2.GetRedColor();//get new red
+ColorMix2.GetGreenColor();//get new green
+ColorMix2.GetBlueColor();// get new blue
+ColorMix2.AddColor(ColorMix2);// add this Color mix to stored
                                   // data values
 
-    cout<< "New Color Mixture is : " << ColorMix2 << "\n\n";
+cout<< "New Color Mixture is : " << ColorMix2 << "\n\n";
     // output the nex wolor mixture
 
-  return 0;
-  //ending  the program
+//after this is we want to add more we can as well it dont matter
+
+return 0;
+//ending  the program
 }
