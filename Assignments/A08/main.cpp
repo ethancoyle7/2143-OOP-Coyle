@@ -26,38 +26,6 @@
 
 using namespace std;
 
-// this show the use of copy constructor using dynam
-//allocated memory due to the association with
-//pointers that makes a deep copy
-class NumContainer
-{
- private:
-  
-    int *array;     // pointer using dynam mem allocation
-    int size;       
-public:
-    NumContainer()
-    {
-        size = 100;
-        array = new int[size];
-    }
-    NumContainer(int s)
-    {
-        size = s;
-        array = new int[size];
-    }
-    NumContainer(const NumContainer& other)
-    {
-        size = other.size;
-        array = new int[size];
-        for(int i=0;i<size;i++)
-        {
-            array[i] = other.array[i];
-        }
-    }
-};
-
-
 // implementation of rgb Color class
 // that intialize one instance, or three instance
 class RgbColor
