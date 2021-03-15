@@ -164,6 +164,10 @@ int main()
 //next we initialize a color palatte to add to a list of color
 //mixes
 
+
+
+
+
 RgbColor ColorMix1, ColorMix2;
 //class name rgbColor object name Color mix1 and 2
 // initialize all the Colors as integers
