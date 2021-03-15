@@ -99,6 +99,42 @@ public:
 
 
 };
+
+
+//setters with dot operator
+void RgbColor:: SetRedColor(int red)
+{
+    r = red;
+}
+void RgbColor::SetGreenColor(int green)
+{
+    g = green;
+}
+
+
+void RgbColor::SetBlueColor(int blue)
+{
+    b = blue;
+}
+
+//initialize getters
+
+int RgbColor:: GetRedColor()
+{
+    return r;
+}
+
+
+
+int RgbColor::GetGreenColor()
+{
+    return GreenColor;
+}
+
+int RgbColor::GetBlueColor()
+{
+    return BlueColor;
+}
 //dot operator for rgb color class to hold our mixed colors
 //inside of a vectore called colorpallete mixes
 // this is so we can store a plethora of different mixes if we
@@ -138,6 +174,40 @@ RgbColor::RgbColor(int r,int g, int b)
     RedColor = r;
     GreenColor = g;
     BlueColor = b;
+}
+
+//setters with dot operator for grb color class
+
+void RgbColor:: SetRedColor(int red)
+{
+    RedColor = red;
+}
+void RgbColor::SetGreenColor(int green)
+{
+    GreenColor = green;
+}
+
+void RgbColor::SetBlueColor(int blue)
+{
+    BlueColor=blue;
+}
+
+
+//initialize getters for color palatte
+
+int RgbColor:: GetRedColor()
+{
+    return RedColor;
+}
+
+int RgbColor::GetGreenColor()
+{
+    return GreenColor;
+}
+
+int RgbColor::GetBlueColor()
+{
+    return BlueColor;
 }
 
 //overload ostream using friend function
