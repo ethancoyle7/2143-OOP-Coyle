@@ -25,13 +25,16 @@ Search For: @popular graphviz and install top result to allow you to preview gra
 #### Helper Links
 There are more than just these, but these stuck out when I was preparing my tutorial:
 
-Simple but has c++ code to write a simple digraph:
+#### Simple but has c++ code to write a simple digraph:
 https://devjeetr.wordpress.com/2012/04/30/visualising-a-binary-search-tree-using-graphviz/
-Decent examples of a few different data structures:
+
+#### Decent examples of a few different data structures:
 https://eddmann.com/posts/using-graphviz-with-svg-output-in-php/
-Spacing tricks (not necessary):
+
+#### Spacing tricks (not necessary):
 https://stackoverflow.com/questions/23429600/how-do-i-make-a-dot-graph-representing-a-binary-tree-more-symmetric
-Part of the graphviz docs:
+
+#### Part of the graphviz docs:
 https://graphviz.org/doc/info/shapes.html
 http://www.graphviz.org/doc/info/attrs.html
 https://graphviz.org/Gallery/directed/crazy.html
