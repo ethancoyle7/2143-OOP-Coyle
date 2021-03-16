@@ -52,12 +52,7 @@ public:
 
     void GrayScale();       // averages  of the Colors
     void AddColor(RgbColor ColorPalleteMixes);// adding Colors to
-    //Colorpallete
-
-    //we create a vecotr now to hold our custom added Colors
-    // we need to initialize this so values dont change(static)
-    //call the RGbColor class and call it ColorPaletteMix
-    static vector <RgbColor> ColorPalleteMix;
+    //Colorpallet
 
     // print to the outstream ostream overloading
     friend ostream& operator<<(ostream&,const RgbColor&);
@@ -72,12 +67,6 @@ void RgbColor::GrayScale()
 {
     BlueColor = GreenColor = RedColor = ((RedColor + GreenColor
       + BlueColor) / 3);// dividing by three b/c R.G.B three 
-}
-
-
- void RgbColor::AddColor(RgbColor ColorPalleteMixes)
-{
-	ColorPalleteMix.push_back(ColorPalleteMixes);
 }
 
 RgbColor RgbColor::operator+(const RgbColor& other)
