@@ -24,7 +24,7 @@
 #include <iostream>
 #include < vector>
 
-using namespace std;
+using namespace std;// stadard namespace
 
 // implementation of rgb Color class
 // that intialize one instance, or three instance
@@ -67,46 +67,14 @@ public:
 
 
 };
-
-
-//setters with dot operator
-void RgbColor:: SetRedColor(int red)
+//dot operator to calclulate the averages of the three colors
+void RgbColor::GrayScale()
 {
-    r = red;
-}
-void RgbColor::SetGreenColor(int green)
-{
-    g = green;
+    BlueColor = GreenColor = RedColor = ((RedColor + GreenColor
+      + BlueColor) / 3);// dividing by three b/c R.G.B three 
 }
 
 
-void RgbColor::SetBlueColor(int blue)
-{
-    b = blue;
-}
-
-//initialize getters
-
-int RgbColor:: GetRedColor()
-{
-    return r;
-}
-
-
-
-int RgbColor::GetGreenColor()
-{
-    return GreenColor;
-}
-
-int RgbColor::GetBlueColor()
-{
-    return BlueColor;
-}
-//dot operator for rgb color class to hold our mixed colors
-//inside of a vectore called colorpallete mixes
-// this is so we can store a plethora of different mixes if we
-//wanted to
  void RgbColor::AddColor(RgbColor ColorPalleteMixes)
 {
 	ColorPalleteMix.push_back(ColorPalleteMixes);
@@ -145,7 +113,11 @@ RgbColor::RgbColor(int r,int g, int b)
 }
 
 //setters with dot operator for grb color class
-
+//dot operator to intial the actual color of inputted color scheme
+//dot operator for rgb color class to hold our mixed colors
+//inside of a vectore called colorpallete mixes
+// this is so we can store a plethora of different mixes if we
+//wanted to
 void RgbColor:: SetRedColor(int red)
 {
     RedColor = red;
@@ -161,7 +133,7 @@ void RgbColor::SetBlueColor(int blue)
 }
 
 
-//initialize getters for color palatte
+//initialize getters for colors
 
 int RgbColor:: GetRedColor()
 {
@@ -186,42 +158,71 @@ int RgbColor::GetBlueColor()
     return outfile;
     //printing out the value of the other color
 }
+
+
+class ColorPallette: public RgbColor
+{
+private:
+   static vector <RgbColor> ColorPalleteMix;
+    RgbColor *array;// integer point to dynamic array
+    int ArraySize;  //size of te array
+
+public:
+    ColorPallette()//default constictor
+    {
+        ArraySize = 100;//size of out array
+        array = new RgbColor [ArraySize];//ask heap for memory
+    }
+    //single overloaded consturctor
+    ColorPallette(int s)
+    
+    {
+        ArraySize = s;
+        array = new RgbColor[ArraySize];
+    }
+    void AddColors(RgbColor a)
+    {
+        ColorPalleteMix.push_back(a);
+    }
+    //copy constructor for a new array of 100 like other array
+    ColorPallette(const ColorPallette& other)
+    {
+        ArraySize = other.ArraySize;
+        array = new RgbColor[ArraySize];
+        for(int i=0;i<ArraySize;i++)
+        {
+            array[i] = other.array[i];
+        }
+    }
+    ~ColorPallette(){};//destory the 
+};
+
 int main() 
 {
- // creating instand of rgbColor class with a combo
- //for Color pallete mixing
-
-//RgbColor FirstColor(255,200,11);  //create instance of c1
-//RgbColor SecondColor(100,14,123);// create instance of c2
-//RgbColor ThirdColor = FirstColor + SecondColor;
-
+RgbColor ColorMix1;
+ColorPallette ConcoctionMix;// class concotionmix for class
+//instance of presets
+ RgbColor C1(255, 200, 11);
+    RgbColor C2(100, 14, 123);
+    RgbColor C3 = C1 + C2;
+    cout << C3 << "\n\n";
 // first color and second color add together
 //addition overload assign to c3
 //cout<<ThirdColor<<endl;// print out 3rdColor obj
+int Color_Red,Color_Green, Color_Blue;
 
-//next we initialize a color palatte to add to a list of color
-//mixes
-
-
-
-
-
-RgbColor ColorMix1, ColorMix2;
-//class name rgbColor object name Color mix1 and 2
-// initialize all the Colors as integers
-int RedColor, GreenColor, BlueColor;
-
+//user defined colors
 cout << "ether value for red green and blue " << endl;
 //user inputs values
-cin >> RedColor >> BlueColor >> GreenColor;
+cin >> Color_Red >> Color_Blue >> Color_Green;
 //intialize the functions to set the values of each of the
 
 //user inputted values go to the setter functions to set
 //these values in
 
-ColorMix1.SetRedColor(RedColor);
-ColorMix1.SetGreenColor(GreenColor);
-ColorMix1.SetBlueColor(BlueColor);
+ColorMix1.SetRedColor(Color_Red);
+ColorMix1.SetGreenColor(Color_Green);
+ColorMix1.SetBlueColor(Color_Blue);
 
 //now we must utilize the get functions to obtain the stored value
 //GETTING RBG COLORS
@@ -235,36 +236,27 @@ ColorMix1.AddColor(ColorMix1);//adding these to
 
 cout<<"our mixture to Color pallete is : "<<
       ColorMix1 <<endl;
-
-
-    // creating another mixture to our concoction Color pallete
-
-cout << "Enter the Colors for another Color pallete mixture "
-         <<" in the form Red, Green and then Blue"<<"\n\n";
-    //user inputted integers
-cin >> RedColor >> BlueColor >> GreenColor;
-
-    //call setter functions to set newvalues
-
-ColorMix2.SetRedColor(RedColor);//set redColor
-ColorMix2.SetGreenColor(GreenColor);//setgreenColor
-ColorMix2.SetBlueColor(BlueColor);//setblueColor
-
-    //call getter functions to obtain the Colors
-
-    //utilize the class rgb Color to obtain the getters
-    //getting RBG COLORS
-ColorMix2.GetRedColor();//get new red
-ColorMix2.GetGreenColor();//get new green
-ColorMix2.GetBlueColor();// get new blue
-ColorMix2.AddColor(ColorMix2);// add this Color mix to stored
-                                  // data values
-
-cout<< "New Color Mixture is : " << ColorMix2 << "\n\n";
-    // output the nex wolor mixture
-
+// creating another mixture to our concoction Color pallete
 //after this is we want to add more we can as well it dont matter
 
+
+//now for us to utilize the colorpallete class to make 
+//our concoction, we utilize color pallete class
+//settters
+ ConcoctionMix.SetRedColor(Color_Red);
+ConcoctionMix.SetGreenColor(Color_Green);
+ConcoctionMix.SetBlueColor(Color_Blue);
+//getters
+ConcoctionMix.GetRedColor();
+ConcoctionMix.GetGreenColor();
+ConcoctionMix.GetBlueColor();
+
+    ConcoctionMix.AddColors(ConcoctionMix);
+    cout <<" our color palate mix is: " <<
+     ConcoctionMix << "\n\n";
+
+cout << " we have succesfully utilized "<< 
+    "all instaces of colring"<< "\n\n";
 return 0;
 //ending  the program
 }
