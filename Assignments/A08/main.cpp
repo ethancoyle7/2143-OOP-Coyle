@@ -22,7 +22,7 @@
 //parent class
 //////////////////////////////////////////////////////////////
 #include <iostream>
-#include < vector>
+#include <vector>
 
 using namespace std;// stadard namespace
 
@@ -51,7 +51,7 @@ public:
     int GetBlueColor();             //get BlueColor
 
     void GrayScale();       // averages  of the Colors
-    void AddColor(RgbColor ColorPalleteMixes);// adding Colors to
+    //void AddColor(RgbColor ColorPalleteMixes);// adding Colors to
     //Colorpallet
 
     // print to the outstream ostream overloading
@@ -151,8 +151,8 @@ int RgbColor::GetBlueColor()
 
 class ColorPallette: public RgbColor
 {
-private:
-   static vector <RgbColor> ColorPalleteMix;
+protected:
+   vector <RgbColor> ColorPalleteMix;
     RgbColor *array;// integer point to dynamic array
     int ArraySize;  //size of te array
 
@@ -191,9 +191,9 @@ int main()
 RgbColor ColorMix1;
 ColorPallette ConcoctionMix;// class concotionmix for class
 //instance of presets
- RgbColor C1(255, 200, 11);
-    RgbColor C2(100, 14, 123);
-    RgbColor C3 = C1 + C2;
+RgbColor C1(255, 200, 11);
+RgbColor C2(100, 14, 123);
+RgbColor C3 = C1 + C2;
     cout << C3 << "\n\n";
 // first color and second color add together
 //addition overload assign to c3
@@ -218,7 +218,7 @@ ColorMix1.SetBlueColor(Color_Blue);
 ColorMix1.GetRedColor();
 ColorMix1.GetGreenColor();
 ColorMix1.GetBlueColor();
-ColorMix1.AddColor(ColorMix1);//adding these to
+//ColorMix1.AddColors(ColorMix1);//adding these to
 //instance and colorpallete
 
     //output the Color mixture
@@ -228,6 +228,9 @@ cout<<"our mixture to Color pallete is : "<<
 // creating another mixture to our concoction Color pallete
 //after this is we want to add more we can as well it dont matter
 
+cout << "ether value for red green and blue " << endl;
+//user inputs values
+cin >> Color_Red >> Color_Blue >> Color_Green;
 
 //now for us to utilize the colorpallete class to make 
 //our concoction, we utilize color pallete class
@@ -240,8 +243,9 @@ ConcoctionMix.GetRedColor();
 ConcoctionMix.GetGreenColor();
 ConcoctionMix.GetBlueColor();
 
-    ConcoctionMix.AddColors(ConcoctionMix);
-    cout <<" our color palate mix is: " <<
+ConcoctionMix.AddColors(ConcoctionMix);
+   
+cout <<" our color palate mix is: " <<
      ConcoctionMix << "\n\n";
 
 cout << " we have succesfully utilized "<< 
