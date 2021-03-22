@@ -12,4 +12,6 @@ our object is to correctly add our Repo link and other
 additional information required to correctly link
 everything together
 
-[ROSTER](https://docs.google.com/spreadsheets/d/1ze4P6yJUVEn5Y1wZLXW2LwMjW1EbyMlC1t6ldwFu_0A/edit#gid=0)
+Click on the below link to get to our class roster
+
+[2143 OOP CLASS ROSTER](https://docs.google.com/spreadsheets/d/1ze4P6yJUVEn5Y1wZLXW2LwMjW1EbyMlC1t6ldwFu_0A/edit#gid=0)
