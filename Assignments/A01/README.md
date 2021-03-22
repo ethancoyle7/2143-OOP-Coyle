@@ -12,5 +12,4 @@ our object is to correctly add our Repo link and other
 additional information required to correctly link
 everything together
 
-
-><img src= "https://docs.google.com/spreadsheets/d/1ze4P6yJUVEn5Y1wZLXW2LwMjW1EbyMlC1t6ldwFu_0A/edit#gid=0" width=250>
+[ROSTER](https://docs.google.com/spreadsheets/d/1ze4P6yJUVEn5Y1wZLXW2LwMjW1EbyMlC1t6ldwFu_0A/edit#gid=0)
