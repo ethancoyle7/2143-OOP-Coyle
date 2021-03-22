@@ -12,4 +12,5 @@
 | [10](./P02) | [P02](./P02) | [Diagram using GraphViz ](./P02)   |
 
 
-## these links above will redirect to the various assignments and project folders inside of my assigments folder
+#### these links above will redirect to respective folders
+
