@@ -28,7 +28,7 @@
 
 #### Picture Texture of the player
 
-#### ![Player Texture](/Assignments/P01/TEXTURES/shrek.png)
+#### ![Player Texture](/Assignments/P01/TEXTURES/shrek.png| width=60)
 
 
 
