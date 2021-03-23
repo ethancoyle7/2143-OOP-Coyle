@@ -12,7 +12,7 @@
 
 #### Image used to track collision detection
 
-[Texture used to detect collision Detection](/Assignments/P01/TEXTURES/ogreshout.png)
+#### ![Texture used to detect collision Detection](/Assignments/P01/TEXTURES/ogreshout.png)
 
 
 
@@ -28,7 +28,7 @@
 
 #### Picture Texture of the player
 
-[Player Texture](/Assignments/P01/TEXTURES/shrek.png)
+#### ![Player Texture](/Assignments/P01/TEXTURES/shrek.png)
 
 
 
@@ -45,9 +45,8 @@
 
 ## Debris
 
-#### picture of the debris
 
-[Debris Texture](/Assignments/P01/TEXTURES/evildonkey.png)
+#### ![Debris Texture](/Assignments/P01/TEXTURES/evildonkey.png)
 
 
 
@@ -67,7 +66,7 @@
 
 #### Image of active score tally
 
-[Link to Scoring Display](/Assignments/P01/TEXTURES/Scoring.png)
+#### ![Link to Scoring Display](/Assignments/P01/TEXTURES/Scoring.png)
 <img src="Scoring.png" width="150">
 
 
@@ -83,7 +82,7 @@
 
 ## Font
 
-[Fonts used](/Assignments/P01/Fonts)
+#### [Fonts used](/Assignments/P01/Fonts)
 
 -> created a link to style the font for gameover and the score
 
@@ -96,9 +95,8 @@
 
 ## Gameplay Pictures
 
-#### Active Gameplay
 
-![HERE WE DISPLAY OUR ACTIVE GAMEPLAY](/Assignments/P01/Gameplay/ActiveGameplay.png)
+#### ![ ACTIVE GAMEPLAY](/Assignments/P01/Gameplay/ActiveGameplay.png)
 
 
 -> this is a screenshot of the active game playing 
@@ -107,7 +105,7 @@
 #### GameOver
 
 
-![Click for Visual of GAME OVER PICTURE](/Assignments/P01/Gameplay/GameOverPicture.png)
+#### ![GAME OVER PICTURE](/Assignments/P01/Gameplay/GameOverPicture.png)
 
 
 
@@ -132,23 +130,12 @@
 
 #### added a BACKGROUND image
 
-Click the link below to access picture
 
-![This is a picture of the background for my game](/Assignments/P01/Gameplay/BackgroundPicture.png)
+
+#### ![This is a picture of the background for my game](/Assignments/P01/Gameplay/BackgroundPicture.png)
 >
 
 
 -> with this created a size and texture for the background 
 
 -> with a preset image
-
-
-
-
-
-
-
-
-
-
-
