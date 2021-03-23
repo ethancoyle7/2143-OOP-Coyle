@@ -5,7 +5,7 @@
 | [01](.P01) |  [P01](./P01) | [ Program for our first game code UML](./P01)   |
 | [02](.main.cpp) |  [main Code](./main.cpp) | [ main program](./main.cpp)   |
 | [03](.Banner) |  [Banner](./Banner) | [ Banner Page](./Banner)   |
-| [04](.GameOverPicture.png) |  [GameOver Picture](./Gameplay/GameOverPicture.png) | [ screenshot of gameover](./P01)   |
+
 
 ## CLICK THE BLUE LINKS BELOW TO ACCESS THE IMAGES
 
