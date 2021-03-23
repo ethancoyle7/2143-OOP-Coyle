@@ -5,15 +5,15 @@
 | [01](.P01) |  [P01](./P01) | [ Program for our first game code UML](./P01)   |
 | [02](.main.cpp) |  [main Code](./main.cpp) | [ main program](./main.cpp)   |
 | [03](.Banner) |  [Banner](./Banner) | [ Banner Page](./Banner)   |
-| [04](.GameOverPicture.png) |  [GameOver Picture](./GameOverPicture.png) | [ screenshot of gameover](./P01)   |
+| [04](.GameOverPicture.png) |  [GameOver Picture](./Gameplay/GameOverPicture.png) | [ screenshot of gameover](./P01)   |
 
 
 ## Collision Detection
 
 #### Image used to track collision detection
 
+[Texture used to detect collision Detection](/Assignments/P01/TEXTURES/ogreshout.png)
 
-<img src="ogreshout.png" width="150">
 
 
 -> for the collision detection i used the ogreshout that fires off from
@@ -28,8 +28,8 @@
 
 #### Picture Texture of the player
 
+[Player Texture](/Assignments/P01/TEXTURES/shrek.png)
 
-<img src="shrek.png" width="150">
 
 
 -> the player starts the game by holding down the spacebar and in turn this 
@@ -47,8 +47,8 @@
 
 #### picture of the debris
 
+[Debris Texture](/Assignments/P01/TEXTURES/evildonkey.png)
 
-<img src="evildonkey.png" width="150">
 
 
 -> the flying debris has a texture of the Donkey which position
@@ -67,7 +67,7 @@
 
 #### Image of active score tally
 
-
+[Link to Scoring Display](/Assignments/P01/TEXTURES/Scoring.png)
 <img src="Scoring.png" width="150">
 
 
@@ -83,6 +83,8 @@
 
 ## Font
 
+[Fonts used](/Assignments/P01/Fonts)
+
 -> created a link to style the font for gameover and the score
 
 -> the font is named textfont.tff
@@ -96,14 +98,18 @@
 
 #### Active Gameplay
 
-<img src="ActiveGameplay.png" width="250">
+![HERE WE DISPLAY OUR ACTIVE GAMEPLAY](/Assignments/P01/Gameplay/ActiveGameplay.png)
+
 
 -> this is a screenshot of the active game playing 
 
 
 #### GameOver
 
-<img src="GameOverPicture.png" width="250">
+
+![Click for Visual of GAME OVER PICTURE](/Assignments/P01/Gameplay/GameOverPicture.png)
+
+
 
 -> this a screenshot of the gameover sequence once max points reached
 
@@ -113,6 +119,8 @@
 ## additional add ons
 
 #### added FOUR music files
+
+[MUSIC FILES](/Assignments/P01/soundfiles)
 
 -> Happy.ogg  - this is the background music that plays throughout the game
 
@@ -124,7 +132,11 @@
 
 #### added a BACKGROUND image
 
-<img src="BackgroundPicture.png" width="150">
+Click the link below to access picture
+
+![This is a picture of the background for my game](/Assignments/P01/Gameplay/BackgroundPicture.png)
+>
+
 
 -> with this created a size and texture for the background 
 
