@@ -6,6 +6,10 @@
 | [02](.main.cpp) |  [main Code](./main.cpp) | [ main program](./main.cpp)   |
 | [03](.Banner) |  [Banner](./Banner) | [ Banner Page](./Banner)   |
 
+Ethan Coyle
+
+Project 1-OOP SFML Game with player,debris,scoring,collision detection and various other methodical procedures and routines
+of which we have learned in our OOP class
 
 ## CLICK THE BLUE LINKS BELOW TO ACCESS THE IMAGES
 
