@@ -1,4 +1,4 @@
-#### this is my projects folder containing all the links to my various projects
+#### this is my projects folder containing all the links to my various projects with links to view files in Blue
 
 |   #    | Folder Link       | Assignment Description                          |
 |------- |-------------------|-------------------------------------------------|
@@ -11,7 +11,7 @@
 
 #### Below is links to files from my game
 
-## Collision Detection
+## COLLISION DETECTION
 
 #### Image used to track collision detection
 
@@ -27,7 +27,7 @@
 
 
 
-## Player
+## PLAYER
 
 #### Picture Texture of the player
 
@@ -46,7 +46,7 @@
 -> has a position and size
 
 
-## Debris
+## DEBRIS
 
 
 ## [Debris Texture](/Assignments/P01/TEXTURES/evildonkey.png)
@@ -65,7 +65,7 @@
 
 -> another one comes in the window
 
-## Scoring
+## SCORING
 
 #### Image of active score tally
 
@@ -83,7 +83,7 @@
 
 -> scoreboard also has a set size and actively increments
 
-## Font
+## FONT
 
 ## [Fonts used](/Assignments/P01/Fonts)
 
@@ -96,7 +96,7 @@
 -> each time the player creates collision
 
 
-## Gameplay Pictures
+## GAMEPLAY PICTURES
 
 
 ## [ ACTIVE GAMEPLAY](/Assignments/P01/Gameplay/ActiveGameplay.png)
@@ -105,7 +105,7 @@
 -> this is a screenshot of the active game playing 
 
 
-#### GameOver
+#### GAMEOVER
 
 
 ## [GAME OVER PICTURE](/Assignments/P01/Gameplay/GameOverPicture.png)
@@ -117,7 +117,7 @@
 -> if player hit escape button, exit out of the game
 
 
-## additional add ons
+## ADDITIONAL ADD-ONS
 
 #### added FOUR music files
 
@@ -131,7 +131,7 @@
 
 -> startup.ogg - this fires up shrek shouting what are you doing in my swamp 
 
-#### added a BACKGROUND image
+#### GAME BACKGROUND
 
 
 
