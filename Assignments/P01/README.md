@@ -8,7 +8,18 @@
 #### Ethan Coyle
 
 ### Project 1-OOP SFML Game 
-#### * includes player , debris , scoring , collision detection and various other methodical procedures and routines of which we have learned in our OOP class
+
+#### this game includes the use of classes to create
+* player
+
+* debris
+
+* scoring
+
+* collision detections
+
+* other oop concepts used to develop this game
+
 
 ## CLICK THE BLUE LINKS BELOW TO ACCESS THE IMAGES
 
@@ -103,7 +114,7 @@
 ## GAMEPLAY PICTURES
 
 
-## [ ACTIVE GAMEPLAY](/Assignments/P01/Gameplay/ActiveGameplay.png)
+## [ACTIVE GAMEPLAY](/Assignments/P01/Gameplay/ActiveGameplay.png)
 
 
 * this is a screenshot of the active game playing 
@@ -111,7 +122,6 @@
 
 
 ## [GAME OVER PICTURE](/Assignments/P01/Gameplay/GameOverPicture.png)
-
 
 
 * this a screenshot of the gameover sequence once max points reached
