@@ -8,9 +8,8 @@
 
 #### Ethan Coyle
 
-#### Project 1-OOP SFML Game 
-#### * includes player, debris,scoring,collision detection and various other methodical procedures and routines
-of which we have learned in our OOP class
+### Project 1-OOP SFML Game 
+#### * includes player , debris , scoring , collision detection and various other methodical procedures and routines of which we have learned in our OOP class
 
 ## CLICK THE BLUE LINKS BELOW TO ACCESS THE IMAGES
 
