@@ -15,3 +15,6 @@ everything together
 Click on the below link to get to our class roster
 
 [2143 OOP CLASS ROSTER](https://docs.google.com/spreadsheets/d/1ze4P6yJUVEn5Y1wZLXW2LwMjW1EbyMlC1t6ldwFu_0A/edit#gid=0)
+
+
+[Course Notes](https://github.com/rugbyprof/2143-Object-Oriented-Programming/blob/master/CourseNotes.pdf)
