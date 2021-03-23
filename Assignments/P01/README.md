@@ -7,6 +7,9 @@
 | [03](.Banner) |  [Banner](./Banner) | [ Banner Page](./Banner)   |
 | [04](.GameOverPicture.png) |  [GameOver Picture](./Gameplay/GameOverPicture.png) | [ screenshot of gameover](./P01)   |
 
+## CLICK THE BLUE LINKS BELOW TO ACCESS THE IMAGES
+
+#### Below is links to files from my game
 
 ## Collision Detection
 
