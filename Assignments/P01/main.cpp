@@ -12,7 +12,7 @@
 *
 *    How to play:
 *
-*		    - spacebar to fire
+*		    - hold spacebar to fire and start the game
 *		 	- left arrow button =>  To go left.
 *			- right arrow button =>  To go right
 *		 	- Up arrow button =>  To go UP.
