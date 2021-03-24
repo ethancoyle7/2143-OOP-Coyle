@@ -140,7 +140,7 @@ string Node::getEdgeColor()
 void openFiles(ifstream& InFile, ofstream& OutFile);
 
 //function prototype to read a line list array from infile
-int InputData(ifstream& InFile, int[]);
+int InputData(ifstream& InFile, string[]);
 
 
 int main()
@@ -149,7 +149,10 @@ int main()
     int id;
     string length;
     string color, shape, GraphType = "", list[100];
-    Node* n;// pointer to a new node
+    //sting color for node color and shape string, list is the
+    //whole line of strings that read in the whole line
+
+    Node* NEWNODE;// pointer to a new node
     vector<Node*> nodes;
 
     // open input file and output file
@@ -169,15 +172,17 @@ int main()
         {
             length = InputData(InFile, list); // read the list and
             InFile >> id;
-            n = new Node(to_string());
+            NEWNODE = new Node(to_string(id));
 
             InFile >> color;
             InFile >> shape;
 
-            n->addStyle("color", Color);
-            n->addStyle("shape", shape);
+            NEWNODE->addStyle("color", Color);
+            NEWNODE->addStyle("shape", shape);
+            NEWNODE->addEdgeColor("EdgeColor", EdgeColor);
+                NEWNODE.setOutlineColor();
 
-            nodes.push_back(n);
+            nodes.push_back(NEWNODE);
 
         }
         for (int i = 0;i < nodes.size();i++)
@@ -222,7 +227,7 @@ void openFiles(ifstream& InFile, ofstream& OutFile)
     InFile.open(InFileName);
 
     //create failsafe way
-    if (Infile.fail()) //close out if the file cannot be opened
+    if (InFile.fail()) //close out if the file cannot be opened
     {
         cout << "the input file could not be opened" << endl;
         exit(0);
@@ -255,7 +260,7 @@ void openFiles(ifstream& InFile, ofstream& OutFile)
 //-> computational processing in the other functions
 //################################################################//
 
-int InputData(ifstream& InFile, int list[])
+int InputData(ifstream& InFile, string list[])
 {
     string line;
     getline(InFile, line); // read a line from file
