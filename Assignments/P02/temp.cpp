@@ -142,9 +142,12 @@ void openFiles(ifstream& InFile, ofstream& OutFile);
 //function prototype to read a line list array from infile
 int InputData(ifstream& InFile, int[]);
 
+
 int main()
 {
-    int id, length;
+    
+    int id;
+    string length;
     string color, shape, GraphType = "", list[100];
     Node* n;// pointer to a new node
     vector<Node*> nodes;
@@ -166,7 +169,7 @@ int main()
         {
             length = InputData(InFile, list); // read the list and
             InFile >> id;
-            n = new Node(to_string(Node));
+            n = new Node(to_string());
 
             InFile >> color;
             InFile >> shape;
