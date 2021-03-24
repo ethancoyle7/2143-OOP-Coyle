@@ -139,58 +139,57 @@ string Node::getEdgeColor()
 //function prototypes to read from InFile
 void openFiles(ifstream& InFile, ofstream& OutFile);
 
-//function prototype to read a line list array from infile
-int InputData(ifstream& InFile, string[]);
 
 
 int main()
 {
-    
-    int id;
-    string length;
-    string color, shape, GraphType = "", list[100];
-    //sting color for node color and shape string, list is the
-    //whole line of strings that read in the whole line
-
-    Node* NEWNODE;// pointer to a new node
-    vector<Node*> nodes;
-
-    // open input file and output file
     ifstream InFile;
     ofstream OutFile;
     openFiles(InFile, OutFile);// prompt for input output
+
+    //initialize variables 
+
+    int NumNodes;// second line that reads in node numbers
+    string line, GraphType = "";
+    //sting color for node color and shape string, list is the
+    //whole line of strings that read in the whole line
+
+    Node myNodes; //Object of the class node
+    vector<Node> myNodes;
+
+    // open input file and output file
+    
 
     //read in the first value string to show which kind of graph
 
     InFile >> GraphType;// read in the graph type and go to next line
     OutFile << "The GraphType is: " << GraphType <<
         "\n\n";
+    InFile >> NumNodes;// read in the next line which is the number of nodes
+
+    //this is what we will read until
 
     while (!InFile.eof())
     {//until eof() is encountered
-        for (int i = 0; i < GraphType;i++)
-        {
-            length = InputData(InFile, list); // read the list and
-            InFile >> id;
-            NEWNODE = new Node(to_string(id));
+        
+       while (getline(InFile, line))     //create a loop to loop through
+       {   //all instances and nodes
+        for (int i = 0; i < NumNodes;i++)
+            
+            {
+                istringstream ss(line);// string streaming from infile
 
-            InFile >> color;
-            InFile >> shape;
-
-            NEWNODE->addStyle("color", Color);
-            NEWNODE->addStyle("shape", shape);
-            NEWNODE->addEdgeColor("EdgeColor", EdgeColor);
-                NEWNODE.setOutlineColor();
-
-            nodes.push_back(NEWNODE);
-
-        }
-        for (int i = 0;i < nodes.size();i++)
-        {
-            OutFile << *nodes[i] << endl;
-            //output all of the nodes and attributes
+                //variables initializes to read from file
+                string Name, Color, Shape,FillColor, outline;
+               
+                //string streaming for each line
+                ss >> Name >> Color >> Shape >> FillColor >> outline;
+                
+            }
         }
 
+           
+       
     }
 
 InFile.close();
@@ -239,39 +238,4 @@ void openFiles(ifstream& InFile, ofstream& OutFile)
 
     // Open outfile.
     OutFile.open(outFileName);
-}
-
-//###########################################//
-// function name
-//  ->int InputData(ifstream& InFile, int list[])
-//
-//parameters
-//  -> accets the InFile that is opened in the InFile
-//  -> search function, and accepts the integer array
-//  -> list that is set to max 100
-//
-//what it does
-//-> the purpose of this function is to read from the InFile
-//-> and read the string of integers on each line and store it 
-//-> in an array that makes it easier to compute the GCD and LCM
-//
-//return type
-//-> returns the integer size of each individual line to be used in
-//-> computational processing in the other functions
-//################################################################//
-
-int InputData(ifstream& InFile, string list[])
-{
-    string line;
-    getline(InFile, line); // read a line from file
-    if (line == "") // read line is empty, read another line
-        getline(InFile, line);
-    int SIZE = 0; // initialize SIZE of list to 0
-
-    istringstream is(line);
-    // loop over the line reading integers into array
-    //list and computing the length of the list
-    while (is >> list[SIZE])
-        SIZE++;
-    return SIZE;
 }
