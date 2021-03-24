@@ -1,13 +1,14 @@
 #include <iostream>
 #include<fstream>
+#include <map>
 
 using namespace std;
 
-//class EDGE;
+class EDGE;
 
 struct Node
 {
-  private:
+  protected:
       string IdentityNum;
       string NameofNode;
       string NodeColor;
@@ -21,26 +22,27 @@ struct Node
         outlineColor= outline;
       }
   friend EDGE;
-  friend ostream& operator<<(ostream& Outfile,                              Node* other)
+  friend ostream& operator<<(ostream& Outfile,Node* other)
     {
         return Outfile << other->IdentityNum << " [NameofNode=" << other->NameofNode << " NodeColor=" << 
                        other->NodeColor<<" OutlineColor=" << other->outlineColor << "]";
     }
 };
 
-class EDGE;
+//
 struct EDGE
 {
+    map<string,string> attributes;
     //structure to create nodes holding id,name, and color
     //map<string, string> attributes;
 
-    Node* Header;
+    Node* Head;
     Node* Tail;
     string pointerstyle;// pointer style
 
     EDGE(Node* H, Node* T)
     {
-        Header = H;//pointer to head
+        Head = H;//pointer to head
         Tail = T; // pointer to the tail
     }
     //pointerstyle is the pointer
@@ -53,12 +55,18 @@ struct EDGE
     {
         // add attributes for an edge
     }
-
+    
     friend ostream& operator<<(ostream& Outfile, const EDGE& other)
     {
-        Outfile << other.Header->IdentityNum << "->" << other.Tail->IdentityNum;
+        Outfile << other.Head->IdentityNum << "->" << other.Tail->IdentityNum;
         Outfile << "[ pointerstyle=" << other.pointerstyle << "]";
         return Outfile;
+    }
+    friend ostream& operator<<(ostream& os,const Edge& other)
+    {
+        os << other.start->id<<"->"<<other.end->id;
+        os << "[ arrowhead="<<other.arrowhead<<"]";
+        return os;
     }
 };
 
@@ -140,4 +148,5 @@ int main()
     Outfile << Node8 << endl;
     Outfile << Node9 << endl;
     Outfile << Node10 << endl;
+return 0;
 }
