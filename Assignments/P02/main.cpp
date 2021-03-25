@@ -42,7 +42,7 @@ public:
     //setters for out attributes
     void SetInitials(string);
     void SetCountryName(string);
-    
+
     //getters to get new name and initials
     string GetCountryName();
     string GetInitials();
@@ -60,12 +60,9 @@ public:
     //infile overloader
     friend istream& operator>>(istream& InFile, Node& Node);
     //destructor for our class
-    ~Node()
-    {
-        cout << " node has been destoyed" << endl;
-    };// destructor for our node class
+    ~Node(){};
 
-}; // conclusion of our class initialization
+}; 
 
 
 
@@ -108,20 +105,17 @@ string Node::GetInitials()
     return Initials;
 }
 
-//create a type definition
+
 typedef pair<string, string> linkcountry;
+
+
 
 struct Edge
 {
-    //value for countrys
-    //c1->c2 edge number ###
     string CountryInitials;
     string CountryInitials2;
     string country1;
-    
-
-    //mapping out linekd countries
-    //and then mapping our traversal
+    string edge_type;
     map<string, string> linkedcountries;
     map<string, string>::iterator traversal;
 
@@ -138,7 +132,7 @@ struct Edge
 
     void addStyle(string country2, string edgeammount)
     {
-        linkedcountries.insert(pair(country2, edgeammount));
+        linkedcountries.insert({country2, edgeammount});
         //our key is going to be the second country value and then edge
     }
 
@@ -168,7 +162,6 @@ int main()
     ofstream OutFile;
     openFiles(InFile, OutFile);// prompt for input output
     
-    //creating a vector of edges pointing to contents
     vector<Edge*> edge;
 
      //create objects for class and structures
@@ -176,10 +169,7 @@ int main()
     Edge* edges;// pointer to edges of the edge stuct
     //variable initialization
 
-    //these integers are being used as our counters
     int NumNodes, Numedges;// second line that reads in node numbers
-    
-    //string values are being read from input
     string GraphType = "", edgenumber, country2, FirstCountry;
     
     
@@ -212,25 +202,22 @@ int main()
         OutFile << " There are " << Numedges << " linked nodes" << endl << endl;
 
         for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
-        {   
-            //after reading next number read in first count initals
+        {
             InFile >> FirstCountry;
-            edges = new Edge(FirstCountry);//create a new node for it
-            //read in the next two items as strrings
+            edges = new Edge(FirstCountry);
+
             InFile >> country2;
             InFile >> edgenumber;
 
             edges->addStyle("country1", country2);
             edges->addStyle("edgenumber", edgenumber);
 
-            edge.push_back(edges);//add to vector
+            edge.push_back(edges);
 
         }
 
         for (int i = 0;i < edge.size();i++)
         {
-            //printing out the output using operator overload
-            //defined in the stuct edge
             OutFile << *edge[i] << endl;
         }
     }
