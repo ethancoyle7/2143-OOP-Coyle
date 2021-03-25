@@ -13,12 +13,12 @@ class Node
 {
 private:
     //private attributes
-    string EdgeColor;
+    /*string EdgeColor;
     string FillColor;
     string OutlineColor;
     string EdgeStyle;
     string Name;
-    string NodeNumber;
+    string NodeNumber;*/
 
 
     string Initials;
@@ -56,6 +56,9 @@ public:
 
     //overloaded outstream operator for our class
     friend ostream& operator<<(ostream& OutFile, const Node& other);
+
+    //infile overloader
+    friend istream& operator>>(istream& InFile, Node& Node);
     //destructor for our class
     ~Node()
     {
@@ -74,6 +77,13 @@ ostream& operator<<(ostream& OutFile, const Node& other)
     return OutFile << "[" << " NodeName =" << other.Initials << "," <<
         " Country= " << other.CountryName << "]";
 };
+
+
+istream& operator>>(istream& InFile, Node& Node)
+{
+    InFile >> Node.Initials >> Node.CountryName;
+    return InFile;
+}
 
 
 
@@ -128,6 +138,7 @@ int main()
         "\n\n";
     InFile >> NumNodes;// read in the next line which is the number of nodes
     SIZE = NumNodes;
+    OutFile << "There are :  " << NumNodes << "  Nodes" << endl;
     //this is what we will read until
 
     while (!InFile.eof())
@@ -145,6 +156,7 @@ int main()
 
                 //string streaming for each line
                 ss >> Initials >> Name;
+                OutFile << Initials << "   " << Name << endl;
                 myNodes.push_back(line);
             }
 
