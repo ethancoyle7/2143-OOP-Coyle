@@ -1,7 +1,6 @@
 #include<sstream>
 #include<iostream>
 #include<fstream>
-#include<iomanip>
 #include<vector>
 
 using namespace std;
@@ -72,10 +71,10 @@ public:
 
 //definition for ostream overloading
 
-ostream& operator<<(ostream& OutFile, const Node& other)
+ostream& operator<<(ostream& OutFile, const Node& nodes)
 {
-    return OutFile << "[" << " NodeName =" << other.Initials << "," <<
-        " Country= " << other.CountryName << "]";
+    return OutFile << "[" << " NodeName =" << nodes.Initials << "," <<
+        " Country= " << nodes.CountryName << "]"<< '\n';
 };
 
 
@@ -118,17 +117,15 @@ int main()
     openFiles(InFile, OutFile);// prompt for input output
 
     //initialize variables 
-
+    Node nodes;// class node with object nodes
+    
     int NumNodes;// second line that reads in node numbers
     int SIZE;
     string line, GraphType = "";
-    //sting color for node color and shape string, list is the
-    //whole line of strings that read in the whole line
+   
+    
 
-    //Node myNodes; //Object of the class node
-    vector<string> myNodes;
-
-    // open input file and output file
+    
     
 
     //read in the first value string to show which kind of graph
@@ -156,8 +153,12 @@ int main()
 
                 //string streaming for each line
                 ss >> Initials >> Name;
-                OutFile << Initials << "   " << Name << endl;
-                myNodes.push_back(line);
+                
+                nodes.SetInitials(Initials);//set read in values to node
+                nodes.SetCountryName(Name);
+                OutFile<< nodes;
+                //OutFile << Initials << "   " << Name << endl;
+                
             }
 
 
