@@ -120,49 +120,28 @@ int main()
     Node nodes;// class node with object nodes
     
     int NumNodes;// second line that reads in node numbers
-    int SIZE;
-    string line, GraphType = "";
-   
-    
 
-    
-    
-
+    string GraphType = "";
     //read in the first value string to show which kind of graph
 
     InFile >> GraphType;// read in the graph type and go to next line
     OutFile << "The GraphType is: " << GraphType <<
         "\n\n";
     InFile >> NumNodes;// read in the next line which is the number of nodes
-    SIZE = NumNodes;
+    
     OutFile << "There are :  " << NumNodes << "  Nodes" << endl;
     //this is what we will read until
 
     while (!InFile.eof())
     {//until eof() is encountered
         for (int i = 0; i < NumNodes;i++)
-
-        {
-            while (getline(InFile, line))     //create a loop to loop through
-            {   //all instances and nodes
-
-                istringstream ss(line);// string streaming from infile
-
-                //variables initializes to read from file
-                string Initials, Name;
-
-                //string streaming for each line
-                ss >> Initials >> Name;
-                
-                nodes.SetInitials(Initials);//set read in values to node
-                nodes.SetCountryName(Name);
-                OutFile<< nodes;
-                //OutFile << Initials << "   " << Name << endl;
-                
-            }
-
-
-
+        { 
+        // call the outstream and instream overload for 
+        // the lines
+        //no need for anything else
+          InFile>> nodes;
+          OutFile<< nodes;
+        
         }
     }
 
