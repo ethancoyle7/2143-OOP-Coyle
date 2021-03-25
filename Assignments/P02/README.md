@@ -50,5 +50,14 @@ Plain Binary Tree
 
 Not So Plain Binary Tree
 
-## Below is a link to my replit compilation
-## [Program 2](https://replit.com/join/shjufhwy-ethancoyle7)
+
+## Below are links to various folders
+#### inside will be a list of input,output,and main cpp
+
+|   #    | Folder Link       | Assignment Description                          |
+|------- |-------------------|-------------------------------------------------|
+| [01](.P02) |  [Banner](./P02) | [ Banner for Project 2](./P02)   |
+| [02](.temp.cpp) |  [temp.cpp](./temp.cpp) | [ This is my main working program](./temp.cpp)   |
+| [03](.input.txt) |  [temp.cpp](./input.txt) | [ This is my main working program](./input.txt)   |
+| [04](.output.txt) |  [input.txt](./output.txt) | [ This is the output link](./output.txt)   |
+
