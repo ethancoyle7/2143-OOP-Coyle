@@ -13,133 +13,81 @@ class Node
 {
 private:
     //private attributes
-    string EdgeColor;
-    string FillColor;
-    string OutlineColor;
-    string EdgeStyle;
-    string Name;
-    string NodeNumber;
+    string Initials;
+    string CountryName;
 
 public:
-    Node() {};// default constructor
-    //overloaded default method for our node
-    Node(string NodeNum, string name, string fillcolor, string edge, string outline, string EdgeCol)
+    //default constructor to hold our values
+    Node()
     {
-        //basic node has these attributes
-        NodeNumber = NodeNum;// read in the node number
-        Name = name;
-        FillColor = fillcolor;
-        EdgeStyle = edge;
-        OutlineColor = outline;
-        EdgeColor = EdgeCol;
+        Initials = CountryName = 'a';
+    };// default constructor
+    //overloaded default method for our node
+    //default string of initials and then countryname
+    Node(string CountryInitials, string Name)
+    {
+        CountryName = Name;
+        Initials = CountryInitials;
+    }
+    //four methods below to get and set the input values
+    
+    //setters for out attributes
+    void SetInitials(string);
+    void SetCountryName(string);
+
+    //getters to get new name and initials
+    string GetCountryName();
+    string GetInitials();
+
+    //copy constructor for another node
+    Node(const Node& other)
+    {
+        this->Initials = other.Initials;
+        this->CountryName = other.CountryName;
     }
 
-    //setters for out attributes
-    void SetNodeNumber(string);//node number read in
-    void SetEdgeStyle(string); // style for the edge
-    void SetOutlineColor(string); //style for outline
-    void SetFillColor(string);// node fill setter
-    void SetName(string);// name of the node
-    void SetEdgeColor(string); // color for our edges
-
-    //getters for our attributes
-    string getNodeNumber();
-    string getEdgeStyle();
-    string getOutlineColor();
-    string getFillColor();
-    string getName();// get the name
-    string getEdgeColor();//get edge color
-
-    //operator outfile overloading to print how we want
-    friend ostream& operator<<(ostream& OutFile, Node& other);
-
+    //overloaded outstream operator for our class
+    friend ostream& operator<<(ostream& OutFile, const Node& other);
+    //destructor for our class
     ~Node()
     {
         cout << " node has been destoyed" << endl;
     };// destructor for our node class
+
+}; // conclusion of our class initialization
+
+//definition for ostream overload
+ostream& operator<<(ostream& OutFile, const Node& other)
+{
+    return OutFile << "[" << " NodeName =" << other.Initials << "," <<
+        " Country= " << other.CountryName << "]";
 };
 
 
 
-
-//definition for ostream overloading
-ostream& operator<<(ostream& OutFile, Node& other)
+//setters for our class dot operator
+void Node::SetInitials(string CountryInitials)
 {
-
-    OutFile << other.id << "[ ";
-
-    for (other.node = other.styles.begin(); other.node != other.styles.end(); ++other.node)
-    {
-        return OutFile << other.node->first << "=" << other.node->second << ", " << "]";
-
-    }
-};
-
-
-//setters for our class
-
-void Node::SetNodeNumber(string NodeNum)
-{
-    NodeNumber = NodeNum;//name of the node
-}
-void Node::SetName(string name)
-{
-    Name = name;//name of the node
-}
-void Node::SetEdgeStyle(string edge)
-{
-    EdgeStyle = edge;//assign edge to edgestyle
-}
-//set the outline color attribute
-void Node::SetOutlineColor(string color)
-{
-    OutlineColor = color;//assign outline color
-}
-//set the fill attribute
-void Node::SetFillColor(string Fill)
-{
-    FillColor = Fill;//assign the fill color
-}
-void Node::SetEdgeColor(string EdgeCol)
-{
-    EdgeColor = EdgeCol;
+    Initials = CountryInitials;
 }
 
-//getters to obtain the attribute names
-
-string Node::getNodeNumber()
+void Node::SetCountryName(string name)
 {
-    return NodeNumber;
+    CountryName = name;
 }
 
-string Node::getName()
+//getter functions for our nodes dot operator
+string Node::GetCountryName()
 {
-    return Name;
+    return CountryName;
 }
-string Node::getOutlineColor()
+string Node::GetInitials()
 {
-    return OutlineColor;// return the string color
+    return Initials;
 }
-
-string Node::getEdgeStyle()
-{
-    return EdgeStyle;//return the edge style
-}
-string Node::getFillColor()
-{
-    return FillColor; // return the fill color attribute
-}
-string Node::getEdgeColor()
-{
-    return EdgeColor; // return the fill color attribute
-}
-
-
 
 //function prototypes to read from InFile
 void openFiles(ifstream& InFile, ofstream& OutFile);
-
-
 
 int main()
 {
@@ -148,48 +96,36 @@ int main()
     openFiles(InFile, OutFile);// prompt for input output
 
     //initialize variables 
-
-    int NumNodes;// second line that reads in node numbers
+    int NumNodes;// second line is num of nodes
     string line, GraphType = "";
-    //sting color for node color and shape string, list is the
-    //whole line of strings that read in the whole line
-
+    
     Node myNodes; //Object of the class node
     vector<Node> myNodes;
 
-    // open input file and output file
-    
-
-    //read in the first value string to show which kind of graph
-
-    InFile >> GraphType;// read in the graph type and go to next line
+    InFile >> GraphType;//graph is first name in list
     OutFile << "The GraphType is: " << GraphType <<
         "\n\n";
-    InFile >> NumNodes;// read in the next line which is the number of nodes
+    InFile >> NumNodes;// read in #nodes
 
     //this is what we will read until
 
     while (!InFile.eof())
     {//until eof() is encountered
-        
-       while (getline(InFile, line))     //create a loop to loop through
-       {   //all instances and nodes
         for (int i = 0; i < NumNodes;i++)
-            
-            {
+        {
+            while (getline(InFile, line))     //create a loop to loop through
+            {   //all instances and nodes
+
                 istringstream ss(line);// string streaming from infile
 
                 //variables initializes to read from file
-                string Name, Color, Shape,FillColor, outline;
-               
-                //string streaming for each line
-                ss >> Name >> Color >> Shape >> FillColor >> outline;
-                
-            }
-        }
+                string Initials, Name;
 
-           
-       
+                //string streaming for each line
+                ss >> Initials >> Name;
+
+			}
+        }
     }
 
 InFile.close();
