@@ -115,19 +115,19 @@ struct Edge
     string CountryInitials;
     string CountryInitials2;
     string country1;
-    string edge_type;
+    string edges;
     map<string, string> linkedcountries;
     map<string, string>::iterator traversal;
 
     Edge()
     {
-        CountryInitials = CountryInitials2 = country1 = edge_type = "";
+        CountryInitials = CountryInitials2 = country1 = edges = "";
     }
     Edge(string CountryInit)
     {
         CountryInitials = CountryInit;
         CountryInitials2 = CountryInit;
-        country1 = edge_type = "";
+        country1 = edges = "";
     }
 
     void addStyle(string country2, string edgeammount)
@@ -209,7 +209,7 @@ int main()
             InFile >> country2;
             InFile >> edgenumber;
 
-            edges->addStyle("country1", country2);
+            edges->addStyle("country2", country2);
             edges->addStyle("edgenumber", edgenumber);
 
             edge.push_back(edges);
