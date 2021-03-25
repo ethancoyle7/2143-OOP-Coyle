@@ -57,13 +57,13 @@ Not So Plain Binary Tree
 |   #    | Folder Link       | Assignment Description                          |
 |------- |-------------------|-------------------------------------------------|
 | [01](.P02) |  [Banner](./P02) | [ Banner for Project 2](./P02)   |
-| [02](.temp.cpp) |  [Program File](./temp.cpp) | [ This is my main working program](./temp.cpp)   |
+| [02](.main.cpp) |  [Program File](./main.cpp) | [ This is my main working program](./main.cpp)   |
 | [03](.input.txt) |  [INPUT](./input.txt) | [ Input File Link](./input.txt)   |
 | [04](.output.txt) |  [OUTPUT](./output.txt) | [ This is the output link](./output.txt)   |
 
 
 ### Below is a link to my Replit Where i build my code
 
-## [ReplitLink](https://replit.com/join/fkuuwxha-ethancoyle7)
+## [ReplitLink](https://replit.com/join/nplwosqw-ethancoyle7)
 
 

@@ -1,152 +1,272 @@
-#include <iostream>
+#include<sstream>
+#include<iostream>
 #include<fstream>
-#include <map>
+#include<vector>
+#include<map>
 
 using namespace std;
 
-class EDGE;
 
-struct Node
+//below is an instance of our node that will create a node to print out to 
+//and link to other nodes
+class Node
 {
-  protected:
-      string IdentityNum;
-      string NameofNode;
-      string NodeColor;
-      string outlineColor;
-  public:
-      Node(string identity, string name, string color, string outline)
-     {
-        IdentityNum = identity;
-        NameofNode = name;
-        NodeColor = color;
-        outlineColor= outline;
-      }
-  friend EDGE;
-  friend ostream& operator<<(ostream& Outfile,Node* other)
+private:
+    //private attributes
+    /*string EdgeColor;
+    string FillColor;
+    string OutlineColor;
+    string EdgeStyle;
+    string Name;
+    string NodeNumber;*/
+
+
+    string Initials;
+    string CountryName;
+
+public:
+    //default constructor to hold our values
+    Node()
     {
-        return Outfile << other->IdentityNum << " [NameofNode=" << other->NameofNode << " NodeColor=" << 
-                       other->NodeColor<<" OutlineColor=" << other->outlineColor << "]";
+        Initials = CountryName = 'a';
+    };// default constructor
+    //overloaded default method for our node
+    //default string of initials and then countryname
+    Node(string CountryInitials, string Name)
+    {
+        CountryName = Name;
+        Initials = CountryInitials;
+    }
+    //four methods below to get and set the input values
+
+    //setters for out attributes
+    void SetInitials(string);
+    void SetCountryName(string);
+
+    //getters to get new name and initials
+    string GetCountryName();
+    string GetInitials();
+
+    //copy constructor for another node
+    Node(const Node& other)
+    {
+        this->Initials = other.Initials;
+        this->CountryName = other.CountryName;
+    }
+
+    //overloaded outstream operator for our class
+    friend ostream& operator<<(ostream& OutFile, const Node& other);
+
+    //infile overloader
+    friend istream& operator>>(istream& InFile, Node& Node);
+    //destructor for our class
+    ~Node()
+    {
+        cout << " node has been destoyed" << endl;
+    };// destructor for our node class
+
+}; // conclusion of our class initialization
+
+
+
+
+//definition for OutFiletream overloading
+
+ostream& operator<<(ostream& OutFile, const Node& nodes)
+{
+    return OutFile << "[" << " NodeName =" << nodes.Initials << "," <<
+        " Country= " << nodes.CountryName << "]" << '\n';
+};
+
+
+istream& operator>>(istream& InFile, Node& Node)
+{
+    InFile >> Node.Initials >> Node.CountryName;
+    return InFile;
+}
+
+
+
+//setters for our class dot operator
+void Node::SetInitials(string CountryInitials)
+{
+    Initials = CountryInitials;
+}
+
+void Node::SetCountryName(string name)
+{
+    CountryName = name;
+}
+
+//getter functions for our nodes dot operator
+string Node::GetCountryName()
+{
+    return CountryName;
+}
+string Node::GetInitials()
+{
+    return Initials;
+}
+
+
+typedef pair<string, string> linkcountry;
+
+struct Edge
+{
+    string CountryInitials;
+    string CountryInitials2;
+    string country1;
+    string edge_type;
+    map<string, string> linkedcountries;
+    map<string, string>::iterator traversal;
+
+    Edge()
+    {
+        CountryInitials = CountryInitials2 = country1 = edge_type = "";
+    }
+    Edge(string CountryInit)
+    {
+        CountryInitials = CountryInit;
+        CountryInitials2 = CountryInit;
+        country1 = edge_type = "";
+    }
+
+    void addStyle(string country2, string edgeammount)
+    {
+        linkedcountries.insert(pair(country2, edgeammount));
+        //our key is going to be the second country value and then edge
+    }
+
+    friend ostream& operator<<(ostream& OutFile, Edge& other)
+    {
+        //first country initials are read in first
+        OutFile << other.CountryInitials;
+
+        for (other.traversal = other.linkedcountries.begin(); other.traversal != other.linkedcountries.end(); ++other.traversal)
+        {
+            // read in the second and third
+            OutFile <<"->"<< other.traversal->first << " " << other.traversal->second << ", ";
+        }
+        
+        return OutFile;
     }
 };
 
-//
-struct EDGE
-{
-    map<string,string> attributes;
-    //structure to create nodes holding id,name, and color
-    //map<string, string> attributes;
 
-    Node* Head;
-    Node* Tail;
-    string pointerstyle;// pointer style
-
-    EDGE(Node* H, Node* T)
-    {
-        Head = H;//pointer to head
-        Tail = T; // pointer to the tail
-    }
-    //pointerstyle is the pointer
-    void setpointerstyle(string s)
-    {
-        pointerstyle = s;
-    }
-    // read in the first string num then the value
-    void addAttribute(string key, string value)
-    {
-        // add attributes for an edge
-    }
-    
-    friend ostream& operator<<(ostream& Outfile, const EDGE& other)
-    {
-        Outfile << other.Head->IdentityNum << "->" << other.Tail->IdentityNum;
-        Outfile << "[ pointerstyle=" << other.pointerstyle << "]";
-        return Outfile;
-    }
-    friend ostream& operator<<(ostream& os,const Edge& other)
-    {
-        os << other.start->id<<"->"<<other.end->id;
-        os << "[ arrowhead="<<other.arrowhead<<"]";
-        return os;
-    }
-};
-
+//function prototypes to read from InFile
+void openFiles(ifstream& InFile, ofstream& OutFile);
 
 int main()
 {
-     ofstream Outfile;
-     Outfile.open("output.txt");
-    //below is a list of nodes that created to 
-    // show a linked list variety used
-    //in our Graphviz class to get visual
+    
+    ifstream InFile;
+    ofstream OutFile;
+    openFiles(InFile, OutFile);// prompt for input output
+    
+    vector<Edge*> edge;
 
-    //creating instances of each and then overwrite the default constructor
-    Node* NODE1 = new Node("01", "Home", "green", "dotted");
-    Node* NODE2 = new Node("02", "School", "blue", "solid");
-    Node* NODE3 = new Node("03", "Food", "yellow", " solid");
-    Node* NODE4 = new Node("04", "Grocery Store", "Pink", "dotted");
-    Node* NODE5 = new Node("05", "Gym", "magenta","dotted");
-    Node* NODE6 = new Node("06", "Work", "green","dotted");
-    Node* NODE7 = new Node("07", "FriendsHouse", "blue","dotted");
-    Node* NODE8 = new Node("08", "WorkLocatioNODE2", "yellow","dotted");
-    Node* NODE9 = new Node("09", "DogPark", "purple","dotted");
-    Node* NODE10 = new Node("10", "Library", "purple","dotted");
+     //create objects for class and structures
+    Node nodes;// class node with object nodes
+    Edge* edges;// pointer to edges of the edge stuct
+    //variable initialization
 
+    int NumNodes, Numedges;// second line that reads in node numbers
+    string GraphType = "", edgenumber, country2, FirstCountry;
+    
+    
+    
+    //read in the first value string to show which kind of graph
+    InFile >> GraphType;// read in the graph type and go to next line
+    OutFile << "The GraphType is: " << GraphType <<
+        "\n\n";
+    InFile >> NumNodes;// read in the next line which is the number of nodes
 
-    //creating EDGE to tie our linked list together
-    EDGE Node1(NODE1, NODE2);
-    //2 points to 3 and so on
-    EDGE Node2(NODE2, NODE3);
-    EDGE Node3(NODE3, NODE4);
-    EDGE Node4(NODE4, NODE5);
-    EDGE Node5(NODE5, NODE6);
-    EDGE Node6(NODE6, NODE7);
-    EDGE Node7(NODE7, NODE8);
-    EDGE Node8(NODE8, NODE9);
-    EDGE Node9(NODE9, NODE10);
+    OutFile << "There are :  " << NumNodes << "  Nodes" << endl;
+    //this is what we will read until
 
-    //wrap all this around back to one
+    while (!InFile.eof())
+    {//until eof() is encountered
+        for (int i = 0; i < NumNodes;i++)
+        {
+            // call the outstream and instream overload for 
+            // the lines
+            //no need for anything else
+            InFile >> nodes;
+            OutFile << nodes;
 
-    EDGE Node10(NODE10, NODE1);
+        }
+        //next link read in the value
 
+        InFile >> Numedges;// read in the number of edges
 
-    Node1.setpointerstyle("diamond");
-    Node2.setpointerstyle("square");
-    Node3.setpointerstyle("square");
-    Node4.setpointerstyle("circle");
-    Node5.setpointerstyle("circle");
-    Node6.setpointerstyle("rectangle");
-    Node7.setpointerstyle("rectangle");
-    Node8.setpointerstyle("circle");
-    Node9.setpointerstyle("circle");
-    Node10.setpointerstyle("square");
+        OutFile << "\n\n";
+        OutFile << " There are " << Numedges << " linked nodes" << endl << endl;
 
-    Outfile << " below are the nodes and attributes" << endl << endl;
+        for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
+        {
+            InFile >> FirstCountry;
+            edges = new Edge(FirstCountry);
 
-    //print out the nodes and attributes
-    Outfile << NODE1 << endl;
-    Outfile << NODE2 << endl;
-    Outfile << NODE3 << endl;
-    Outfile << NODE4 << endl;
-    Outfile << NODE5 << endl;
-    Outfile << NODE6 << endl;
-    Outfile << NODE7 << endl;
-    Outfile << NODE8 << endl;
-    Outfile << NODE9 << endl;
-    Outfile << NODE10 << endl;
+            InFile >> country2;
+            InFile >> edgenumber;
 
+            edges->addStyle("country1", country2);
+            edges->addStyle("edgenumber", edgenumber);
 
-    Outfile << " below are the linked list" << endl << endl;
+            edge.push_back(edges);
 
-    //display the nodes and what they point to
-    Outfile << Node1 << endl;
-    Outfile << Node2 << endl;
-    Outfile << Node3 << endl;
-    Outfile << Node4 << endl;
-    Outfile << Node5 << endl;
-    Outfile << Node6 << endl;
-    Outfile << Node7 << endl;
-    Outfile << Node8 << endl;
-    Outfile << Node9 << endl;
-    Outfile << Node10 << endl;
-return 0;
+        }
+
+        for (int i = 0;i < edge.size();i++)
+        {
+            OutFile << *edge[i] << endl;
+        }
+    }
+
+    InFile.close();
+    OutFile.close();
+    return 0;
+
+}
+
+//#####################################################//
+//f(x) name                                            // 
+//  void openFiles(ifstream& InFile, ofstream& OutFile)//
+//                                                     //
+//what it does?                                        //
+// -> purpOutFilee is to user input in and outfile          //
+//                                                     //
+//paramters                                            //
+// -> utilizes the ofstream and outfile                //
+//                                                     //
+// return type                                         //
+// -> no return type because  void                     //
+//#####################################################//
+
+void openFiles(ifstream& InFile, ofstream& OutFile)
+{
+    // Declare variable for the Files. 
+    char InFileName[40];
+    char outFileName[40];
+
+    // Prompt the user for InFile name
+    cout << "Enter the input file name: ";
+    cin >> InFileName;
+
+    // open input file
+    InFile.open(InFileName);
+
+    //create failsafe way
+    if (InFile.fail()) //OutFile out if the file cannot be opened
+    {
+        cout << "the input file could not be opened" << endl;
+        exit(0);
+    }
+
+    // Prompt the user for OutFile name
+    cout << "Enter the output file name: ";
+    cin >> outFileName;
+
+    // Open outfile.
+    OutFile.open(outFileName);
 }
