@@ -13,6 +13,14 @@ class Node
 {
 private:
     //private attributes
+    string EdgeColor;
+    string FillColor;
+    string OutlineColor;
+    string EdgeStyle;
+    string Name;
+    string NodeNumber;
+
+
     string Initials;
     string CountryName;
 
@@ -56,7 +64,11 @@ public:
 
 }; // conclusion of our class initialization
 
-//definition for ostream overload
+
+
+
+//definition for ostream overloading
+
 ostream& operator<<(ostream& OutFile, const Node& other)
 {
     return OutFile << "[" << " NodeName =" << other.Initials << "," <<
@@ -96,22 +108,32 @@ int main()
     openFiles(InFile, OutFile);// prompt for input output
 
     //initialize variables 
-    int NumNodes;// second line is num of nodes
-    string line, GraphType = "";
-    
-    Node myNodes; //Object of the class node
-    vector<Node> myNodes;
 
-    InFile >> GraphType;//graph is first name in list
+    int NumNodes;// second line that reads in node numbers
+    int SIZE;
+    string line, GraphType = "";
+    //sting color for node color and shape string, list is the
+    //whole line of strings that read in the whole line
+
+    //Node myNodes; //Object of the class node
+    vector<string> myNodes;
+
+    // open input file and output file
+    
+
+    //read in the first value string to show which kind of graph
+
+    InFile >> GraphType;// read in the graph type and go to next line
     OutFile << "The GraphType is: " << GraphType <<
         "\n\n";
-    InFile >> NumNodes;// read in #nodes
-
+    InFile >> NumNodes;// read in the next line which is the number of nodes
+    SIZE = NumNodes;
     //this is what we will read until
 
     while (!InFile.eof())
     {//until eof() is encountered
         for (int i = 0; i < NumNodes;i++)
+
         {
             while (getline(InFile, line))     //create a loop to loop through
             {   //all instances and nodes
@@ -123,8 +145,11 @@ int main()
 
                 //string streaming for each line
                 ss >> Initials >> Name;
+                myNodes.push_back(line);
+            }
 
-			}
+
+
         }
     }
 
