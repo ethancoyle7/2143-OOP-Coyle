@@ -42,7 +42,7 @@ public:
     //setters for out attributes
     void SetInitials(string);
     void SetCountryName(string);
-
+    
     //getters to get new name and initials
     string GetCountryName();
     string GetInitials();
@@ -108,15 +108,20 @@ string Node::GetInitials()
     return Initials;
 }
 
-
+//create a type definition
 typedef pair<string, string> linkcountry;
 
 struct Edge
 {
+    //value for countrys
+    //c1->c2 edge number ###
     string CountryInitials;
     string CountryInitials2;
     string country1;
-    string edge_type;
+    
+
+    //mapping out linekd countries
+    //and then mapping our traversal
     map<string, string> linkedcountries;
     map<string, string>::iterator traversal;
 
@@ -163,6 +168,7 @@ int main()
     ofstream OutFile;
     openFiles(InFile, OutFile);// prompt for input output
     
+    //creating a vector of edges pointing to contents
     vector<Edge*> edge;
 
      //create objects for class and structures
@@ -170,7 +176,10 @@ int main()
     Edge* edges;// pointer to edges of the edge stuct
     //variable initialization
 
+    //these integers are being used as our counters
     int NumNodes, Numedges;// second line that reads in node numbers
+    
+    //string values are being read from input
     string GraphType = "", edgenumber, country2, FirstCountry;
     
     
@@ -203,22 +212,25 @@ int main()
         OutFile << " There are " << Numedges << " linked nodes" << endl << endl;
 
         for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
-        {
+        {   
+            //after reading next number read in first count initals
             InFile >> FirstCountry;
-            edges = new Edge(FirstCountry);
-
+            edges = new Edge(FirstCountry);//create a new node for it
+            //read in the next two items as strrings
             InFile >> country2;
             InFile >> edgenumber;
 
             edges->addStyle("country1", country2);
             edges->addStyle("edgenumber", edgenumber);
 
-            edge.push_back(edges);
+            edge.push_back(edges);//add to vector
 
         }
 
         for (int i = 0;i < edge.size();i++)
         {
+            //printing out the output using operator overload
+            //defined in the stuct edge
             OutFile << *edge[i] << endl;
         }
     }
