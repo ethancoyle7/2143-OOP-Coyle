@@ -60,9 +60,9 @@ public:
     //infile overloader
     friend istream& operator>>(istream& InFile, Node& Node);
     //destructor for our class
-    ~Node(){};
+    ~Node() {};
 
-}; 
+};
 
 
 
@@ -105,50 +105,49 @@ string Node::GetInitials()
     return Initials;
 }
 
-
-typedef pair<string, string> linkcountry;
-
-
-
-struct Edge
+//creating a structer to read the linked nodes and their edges
+struct LinkedNodes
 {
-    string CountryInitials;
-    string CountryInitials2;
-    string country1;
-    string edges;
-    map<string, string> linkedcountries;
-    map<string, string>::iterator traversal;
+    //infile reads node node then edge number
+    string FirstCountry;
+    string SecondCountry;
+    int edge;
+    
 
-    Edge()
+    //creating a default constructor to set the values to basic default values
+    LinkedNodes()
     {
-        CountryInitials = CountryInitials2 = country1 = edges = "";
-    }
-    Edge(string CountryInit)
-    {
-        CountryInitials = CountryInit;
-        CountryInitials2 = CountryInit;
-        country1 = edges = "";
-    }
+        FirstCountry = SecondCountry = "Name";
+        edge = 0;
 
-    void addStyle(string country2, string edgeammount)
+    };
+    //create an overload for stuct Node
+    //assign the values to the structure name
+    LinkedNodes(string A, string B, int num)
     {
-        linkedcountries.insert({country2, edgeammount});
-        //our key is going to be the second country value and then edge
-    }
+        FirstCountry = A;
+        SecondCountry = B;
+        edge = num;
+    };
 
-    friend ostream& operator<<(ostream& OutFile, Edge& other)
+    //overloaded outfile operator that formats the output
+
+    friend ostream& operator<<(ostream& OutFile, LinkedNodes& other)
     {
-        //first country initials are read in first
-        OutFile << other.CountryInitials;
+        //format the output suitable for graphviz
+        return OutFile << other.FirstCountry << " ->" << other.SecondCountry <<
+            "[label =" << other.edge << "]" << endl;
+       
+     };
 
-        for (other.traversal = other.linkedcountries.begin(); other.traversal != other.linkedcountries.end(); ++other.traversal)
-        {
-            // read in the second and third
-            OutFile <<"->"<< other.traversal->first << " " << other.traversal->second << ", ";
-        }
-        
-        return OutFile;
-    }
+    /*LinkedNodes& operator = (const LinkedNodes& other)
+    {
+        FirstCountry = other.FirstCountry;
+        SecondCountry = other.SecondCountry;
+
+        return *this;
+    }*/
+
 };
 
 
@@ -157,23 +156,24 @@ void openFiles(ifstream& InFile, ofstream& OutFile);
 
 int main()
 {
-    
+
     ifstream InFile;
     ofstream OutFile;
     openFiles(InFile, OutFile);// prompt for input output
-    
-    vector<Edge*> edge;// create a vector of edge pointers called edge
+
+    vector<LinkedNodes*> node_edges;// create a vector of edge pointers called edge
+    LinkedNodes* Links;// pointer to edges of the edge stuct
 
      //create objects for class and structures
     Node nodes;// class node with object nodes
-    Edge* edges;// pointer to edges of the edge stuct
+
     //variable initialization
 
-    int NumNodes, Numedges;// second line that reads in node numbers
-    string GraphType = "", edgenumber, country2, FirstCountry;
+    int NumNodes, Numedges, edges;// second line that reads in node numbers
+    string GraphType = "", FirstCountry, SecondCountry;
     //these string values are the string values we are reading in
-    
-    
+
+
     //read in the first value string to show which kind of graph
     InFile >> GraphType;// read in the graph type and go to next line
     OutFile << "The GraphType is: " << GraphType <<
@@ -204,28 +204,23 @@ int main()
         for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
         {
             //read in the first line the first instance
-            InFile >> FirstCountry;
-            //dynamically allocate  and store in vector
-            edges = new Edge(FirstCountry);
-
-            //read in the next two numbers
-            InFile >> country2;
-            InFile >> edgenumber;
-
-            edges->addStyle("country2", country2);
-            edges->addStyle("edgenumber", edgenumber);
-            //set up assignment
-
-            //add new line to the vector 
-            edge.push_back(edges);
+            for (int i = 0; i < Numedges; i++)
+            {
+                //read in all three from infile 
+                //create new node dynamically
+                //store in the vector
+                InFile >> FirstCountry >> SecondCountry >> edges;
+                Links = new LinkedNodes(FirstCountry, SecondCountry, edges);
+                node_edges.push_back(Links);
+            }
 
         }
 
-        for (int i = 0;i < edge.size();i++)
+        for (int i = 0;i < node_edges.size();i++)
         {
-          //call ostream overload for the stuct
-          //print out each line
-            OutFile << *edge[i] << endl;
+            //call ostream overload for the stuct
+            //print out each line
+            OutFile << *node_edges[i] << endl;
         }
     }
 
