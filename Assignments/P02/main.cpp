@@ -71,8 +71,8 @@ public:
 
 ostream& operator<<(ostream& OutFile, const Node& nodes)
 {
-    return OutFile << "[" << " NodeName =" << nodes.Initials << "," <<
-        " Country= " << nodes.CountryName << "]" << endl;
+    return OutFile << nodes.Initials << "[ label =" << " \" "
+        << nodes.CountryName << " \" ]" << '\n';
 };
 
 
@@ -112,7 +112,7 @@ struct LinkedNodes
     string FirstCountry;
     string SecondCountry;
     int edge;
-    
+
 
     //creating a default constructor to set the values to basic default values
     LinkedNodes()
@@ -136,10 +136,10 @@ struct LinkedNodes
         //format the output suitable for graphviz
         return OutFile << other.FirstCountry << " ->" << other.SecondCountry <<
             "[label =" << other.edge << "]" << endl;
-       
-     };
 
-  
+    };
+
+
 };
 
 
@@ -168,11 +168,12 @@ int main()
 
     //read in the first value string to show which kind of graph
     InFile >> GraphType;// read in the graph type and go to next line
-    OutFile << "The GraphType is: " << GraphType <<
+    OutFile << GraphType << " MyGraph "<< "{ "<<
         "\n\n";
     InFile >> NumNodes;// read in the next line which is the number of nodes
-
-    OutFile << "There are :  " << NumNodes << "  Nodes" << endl;
+    
+                       //dont need to print out nodes for transfer to graphviz
+    //OutFile << "There are :  " << NumNodes << "  Nodes" << endl;
     //this is what we will read until
 
     while (!InFile.eof())
@@ -191,19 +192,21 @@ int main()
         InFile >> Numedges;// read in the number of edges
 
         OutFile << "\n\n";
-        OutFile << " There are " << Numedges << " linked nodes" << endl << endl;
+
+        //graphviz doesnt need this
+        //OutFile << " There are " << Numedges << " linked nodes" << endl << endl;
 
         for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
         {
             //read in the first line the first instance
-            
+
                 //read in all three from infile 
                 //create new node dynamically
                 //store in the vector
-                InFile >> FirstCountry >> SecondCountry >> edges;
-                Links = new LinkedNodes(FirstCountry, SecondCountry, edges);
-                node_edges.push_back(Links);
-            
+            InFile >> FirstCountry >> SecondCountry >> edges;
+            Links = new LinkedNodes(FirstCountry, SecondCountry, edges);
+            node_edges.push_back(Links);
+
 
         }
 
@@ -213,6 +216,7 @@ int main()
             //print out each line
             OutFile << *node_edges[i];
         }
+        OutFile << "}" << endl; // close off the graph design
     }
 
     InFile.close();
