@@ -68,3 +68,13 @@ Not So Plain Binary Tree
 ## [ReplitLink](https://replit.com/@ethancoyle7/progr2revised)
 
 
+ Below is a list of instructions and a link to GraphViz Website where we are visualizing our Graph
+ 
+## Instructions
+
+### [Link To GraphViz](https://dreampuf.github.io/GraphvizOnline)
+
+* copy and paste the contents of the output file
+* See the result in the right 
+
+
