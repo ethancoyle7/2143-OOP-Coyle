@@ -135,7 +135,7 @@ struct LinkedNodes
     {
         //format the output suitable for graphviz
         return OutFile << other.FirstCountry << " ->" << other.SecondCountry <<
-            "[label =" << other.edge << "]" << endl;
+            "[ label =" << " \" " << other.edge << " \" ]" << '\n';
 
     };
 
