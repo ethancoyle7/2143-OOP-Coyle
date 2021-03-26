@@ -72,7 +72,7 @@ public:
 ostream& operator<<(ostream& OutFile, const Node& nodes)
 {
     return OutFile << "[" << " NodeName =" << nodes.Initials << "," <<
-        " Country= " << nodes.CountryName << "]" << '\n';
+        " Country= " << nodes.CountryName << "]" << endl;
 };
 
 
@@ -131,7 +131,6 @@ struct LinkedNodes
     };
 
     //overloaded outfile operator that formats the output
-
     friend ostream& operator<<(ostream& OutFile, LinkedNodes& other)
     {
         //format the output suitable for graphviz
@@ -140,14 +139,7 @@ struct LinkedNodes
        
      };
 
-    /*LinkedNodes& operator = (const LinkedNodes& other)
-    {
-        FirstCountry = other.FirstCountry;
-        SecondCountry = other.SecondCountry;
-
-        return *this;
-    }*/
-
+  
 };
 
 
@@ -204,15 +196,14 @@ int main()
         for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
         {
             //read in the first line the first instance
-            for (int i = 0; i < Numedges; i++)
-            {
+            
                 //read in all three from infile 
                 //create new node dynamically
                 //store in the vector
                 InFile >> FirstCountry >> SecondCountry >> edges;
                 Links = new LinkedNodes(FirstCountry, SecondCountry, edges);
                 node_edges.push_back(Links);
-            }
+            
 
         }
 
@@ -220,7 +211,7 @@ int main()
         {
             //call ostream overload for the stuct
             //print out each line
-            OutFile << *node_edges[i] << endl;
+            OutFile << *node_edges[i];
         }
     }
 
