@@ -162,7 +162,7 @@ int main()
     ofstream OutFile;
     openFiles(InFile, OutFile);// prompt for input output
     
-    vector<Edge*> edge;
+    vector<Edge*> edge;// create a vector of edge pointers called edge
 
      //create objects for class and structures
     Node nodes;// class node with object nodes
@@ -171,7 +171,7 @@ int main()
 
     int NumNodes, Numedges;// second line that reads in node numbers
     string GraphType = "", edgenumber, country2, FirstCountry;
-    
+    //these string values are the string values we are reading in
     
     
     //read in the first value string to show which kind of graph
@@ -203,21 +203,28 @@ int main()
 
         for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
         {
+            //read in the first line the first instance
             InFile >> FirstCountry;
+            //dynamically allocate  and store in vector
             edges = new Edge(FirstCountry);
 
+            //read in the next two numbers
             InFile >> country2;
             InFile >> edgenumber;
 
             edges->addStyle("country2", country2);
             edges->addStyle("edgenumber", edgenumber);
+            //set up assignment
 
+            //add new line to the vector 
             edge.push_back(edges);
 
         }
 
         for (int i = 0;i < edge.size();i++)
         {
+          //call ostream overload for the stuct
+          //print out each line
             OutFile << *edge[i] << endl;
         }
     }
@@ -233,7 +240,7 @@ int main()
 //  void openFiles(ifstream& InFile, ofstream& OutFile)//
 //                                                     //
 //what it does?                                        //
-// -> purpOutFilee is to user input in and outfile          //
+// -> purpOutFilee is to user input in and outfile     //
 //                                                     //
 //paramters                                            //
 // -> utilizes the ofstream and outfile                //
