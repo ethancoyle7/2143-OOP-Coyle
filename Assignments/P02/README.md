@@ -56,11 +56,12 @@ Not So Plain Binary Tree
 
 |   #    | Folder Link       | Assignment Description                          |
 |------- |-------------------|-------------------------------------------------|
-| [01](.P02) |  [Banner](./P02) | [ Banner for Project 2](./P02)   |
-| [02](.main.cpp) |  [Program File](./main.cpp) | [ This is my main working program](./main.cpp)   |
+| [01](.P02) |  [Banner](./P02) | [ Banner for Project 2](./P02)|
+| [02](.main.cpp) |  [Program File](./main.cpp) | [ This is my main working program](./main.cpp)|
 | [03](.input.txt) |  [INPUT](./input.txt) | [ Input File Link](./input.txt)   |
-| [04](.output.txt) |  [OUTPUT](./output.txt) | [ This is the output link](./output.txt)   |
-
+| [04](.output.txt) |  [OUTPUT](./output.txt) | [ This is the output link](./output.txt)|
+| [05](.GraphVizCode.txt) |  [GraphCode](./GraphVizCode.txt) | [This Code is the code implemented in Graph](./GraphVizCode.txt)|
+| [06](.graphviz.png) |  [GraphPicture](./graphviz.png) | [This is picture of Graph](./graphviz.png)   |
 
 ### Below is a link to my Replit Where i build my code
 
