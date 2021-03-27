@@ -1,3 +1,39 @@
+/*****************************************************************************
+*    Author:           Ethan Coyle
+*    Email:            Ejcoyle0912@my.msutexas.edu
+*    
+*    Author:           Loic Konan
+*    Email:            loickonan.lk@gmail.com
+*
+
+*    Author:           Jonathan Hogan
+*    Email:            jon.hogan83@gmail.com
+*       
+*
+*    Label:            P02
+*    Title:            Program 02 - Graphviz Class
+*    Course:           CMPS 2143
+*    Semester:         Spring 2021
+*
+*    Description:
+*                      This Program is about implementing a **graphviz Language
+*                      "wrapper" or "facade"**.
+*                      This means we will be implementing a (tiny) **subset** of
+*                      the graphviz language capability so we can visualize some
+*                      of the typical data structures that will show all the
+*                      countries of the world with a distance needed to travel to
+*                      or from each other.
+*    Files:
+*         main.cpp
+*         output.txt
+*         input.txt
+*
+*    Usage:
+*           main.cpp          : driver program
+*           input.txt         : Input file
+*           output.txt        : output file
+*
+******************************************************************************/
 #include<sstream>
 #include<iostream>
 #include<fstream>
@@ -6,217 +42,429 @@
 
 using namespace std;
 
+//Function prototypes to read from and write to a file.
+void openFiles(ifstream& InFile, ofstream& OutFile);
 
-//below is an instance of our node that will create a node to print out to 
-//and link to other nodes
-class Node
-{
-private:
-    //private attributes
-    /*string EdgeColor;
-    string FillColor;
-    string OutlineColor;
-    string EdgeStyle;
-    string Name;
-    string NodeNumber;*/
-
-
-    string Initials;
-    string CountryName;
-
-public:
-    //default constructor to hold our values
-    Node()
-    {
-        Initials = CountryName = 'a';
-    };// default constructor
-    //overloaded default method for our node
-    //default string of initials and then countryname
-    Node(string CountryInitials, string Name)
-    {
-        CountryName = Name;
-        Initials = CountryInitials;
-    }
-    //four methods below to get and set the input values
-
-    //setters for out attributes
-    void SetInitials(string);
-    void SetCountryName(string);
-
-    //getters to get new name and initials
-    string GetCountryName();
-    string GetInitials();
-
-    //copy constructor for another node
-    Node(const Node& other)
-    {
-        this->Initials = other.Initials;
-        this->CountryName = other.CountryName;
-    }
-
-    //overloaded outstream operator for our class
-    friend ostream& operator<<(ostream& OutFile, const Node& other);
-
-    //infile overloader
-    friend istream& operator>>(istream& InFile, Node& Node);
-    //destructor for our class
-    ~Node() {};
-
-};
-
-
-
-
-//definition for OutFiletream overloading
-
-ostream& operator<<(ostream& OutFile, const Node& nodes)
-{
-    return OutFile << nodes.Initials << "[ label =" << " \" "
-        << nodes.CountryName << " \" ]" << '\n';
-};
-
-
-istream& operator>>(istream& InFile, Node& Node)
-{
-    InFile >> Node.Initials >> Node.CountryName;
-    return InFile;
-}
-
-
-
-//setters for our class dot operator
-void Node::SetInitials(string CountryInitials)
-{
-    Initials = CountryInitials;
-}
-
-void Node::SetCountryName(string name)
-{
-    CountryName = name;
-}
-
-//getter functions for our nodes dot operator
-string Node::GetCountryName()
-{
-    return CountryName;
-}
-string Node::GetInitials()
-{
-    return Initials;
-}
-
-//creating a structer to read the linked nodes and their edges
+/*
+ *    Struct Name: LinkedNodes
+ *
+ *   Description:
+ *       - Holds The countries  names.
+ *       - And the edges between the countries (a connection).
+ *
+ *   Public Methods:
+ * 	     - LinkedNodes()
+ *       - LinkedNodes(string A, string B, int num)
+ *
+ *   Private Methods:
+ *       - None
+ *
+ *   Usage:
+ * 	     - Creates node for a Linked List.
+ *
+ */
 struct LinkedNodes
 {
-    //infile reads node node then edge number
     string FirstCountry;
     string SecondCountry;
     int edge;
 
-
-    //creating a default constructor to set the values to basic default values
+    /**
+      * Public : LinkedNodes()
+      *
+      * Description:
+      *      - Default constructor.
+      *      - Initialize countries name and the edges.
+      *      - friend ostream& operator<<(ostream& OutFile, LinkedNodes& other).
+      *
+      * Params:
+      *      - None.
+      *
+      * Returns:
+      *      - N/A
+      */
     LinkedNodes()
     {
         FirstCountry = SecondCountry = "Name";
         edge = 0;
 
-    };
-    //create an overload for stuct Node
-    //assign the values to the structure name
+    }
+
+    /**
+      * Public : LinkedNodes()
+      *
+      * Description:
+      *      - Overload constructor.
+      *      - Initialize countries name and the edges.
+      *
+      * Params:
+      *      - string A, string B, int num.
+      *
+      * Returns:
+      *      - N/A
+      */
     LinkedNodes(string A, string B, int num)
     {
         FirstCountry = A;
         SecondCountry = B;
         edge = num;
-    };
+    }
 
-    //overloaded outfile operator that formats the output
+    /**
+     * Public : ostream
+     *
+     * Description:
+     *      - Overloading the cout operator to print the countries names.
+     *      -  To print the edges.
+     *
+     * Params:
+     *      - ostream& OutFile, LinkedNodes& other
+     *
+     * Returns:
+     *      - [string] ostream
+     */
     friend ostream& operator<<(ostream& OutFile, LinkedNodes& other)
     {
-        //format the output suitable for graphviz
         return OutFile << other.FirstCountry << " ->" << other.SecondCountry <<
-            "[ label =" << " \" " << other.edge << " \" ]" << '\n';
-
-    };
-
-
+            "[ label =" << " \" " << other.edge << " mi \" ]" << '\n';
+    }
 };
 
+/*
+ *    Class Name: Node
+ *
+ *    Description:
+ *        - A class to store a Node node and to link to other nodes.
+ *
+ *    private Methods:
+ *        - None.
+ *   public Methods:
+ *       - Node()
+ *       - Node(string CountryInitials, string Name)
+ *       - Node(const Node& other)
+ *       - ~Node() {};
+ *       - void SetInitials(string CountryInitials)
+ *       - void SetCountryName(string Name)
+ *       - string GetCountryName()
+ *       - string GetInitials()
+ *       - friend ostream& operator<<(ostream& OutFile, Node& other)
+ *       - friend istream& operator>>(istream& InFile, Node& Node)
+ *
+ *   Usage:
+ *       - To link the countries and the edges.
+ */
+class Node
+{
+private:
+    /*private attributes
+    string EdgeOutLineColor;
+    string FillOutLineColor;
+    string OutlineOutLineColor;
+    string EdgeStyle;
+    string Name;
+    string NodeNumber;*/
 
-//function prototypes to read from InFile
-void openFiles(ifstream& InFile, ofstream& OutFile);
+    string Initials;
+    string CountryName;
+    string Shape;
+    string OutLineColor;
 
+public:
+
+    /**
+    * Public : Node()
+    *
+    * Description:
+    *      - Default Constructor initialize countries name and initials.
+    *
+    * Params:
+    *      - None.
+    *
+    * Returns:
+    *      - N/A
+    */
+    Node()
+    {
+        Initials = CountryName = OutLineColor=Shape='a';
+        
+    }
+
+    /**
+    * Public : Node()
+    *
+    * Description:
+    *      - Overloaded constructor to initialize countries name and initials.
+    *
+    * Params:
+    *      - string CountryInitials, string Name.
+    *
+    * Returns:
+    *      - N/A
+    */
+    Node(string CountryInitials, string Name, string color, string shape)
+    {
+        CountryName = Name;
+        Initials = CountryInitials;
+        OutLineColor = color;
+        Shape = shape;
+        
+    }
+
+    /**
+    * Public : Node()
+    *
+    * Description:
+    *      - Copy constructor to initialize countries name
+    *      - and initials with the values of the other object.
+    *
+    * Params:
+    *      - const Node& other.
+    *
+    * Returns:
+    *      - N/A
+    */
+    Node(const Node& other)
+    {
+        this->Initials = other.Initials;
+        this->CountryName = other.CountryName;
+        this->OutLineColor = other.OutLineColor;
+        this->Shape = other.Shape;
+    }
+
+    /**
+      * Public : ~Node()
+      *
+      * Description:
+      *      - Destructor.
+      *
+      * Params:
+      *      - None.
+      *
+      * Returns:
+      *      - N/A
+      */
+    ~Node() {};
+
+    /**
+     * Public :   SetInitials()
+     *
+     * Description:
+     *       - setter for the Countries initials
+     *
+     * Params:
+     *       - string CountryInitials
+     *
+     * Returns:
+     *       - void
+     */
+    void SetInitials(string CountryInitials)
+    {
+        Initials = CountryInitials;
+    }
+    /**
+     * Public :   SetOutLineColor()
+     *
+     * Description:
+     *       - setter for the Node shape
+     *
+     * Params:
+     *       - string OutLineColor
+     *
+     * Returns:
+     *       - void
+     */
+    void SetOutLineColor(string color)
+    {
+        OutLineColor = color;
+    }
+
+    /**
+     * Public :   SetOutLineColor()
+     *
+     * Description:
+     *       - setter for the Node shape
+     *
+     * Params:
+     *       - string OutLineColor
+     *
+     * Returns:
+     *       - void
+     */
+    void SetShape(string shape)
+    {
+        Shape = shape;
+    }
+
+    /**
+    * Public :   SetCountryName()
+    *
+    * Description:
+    *       - setter for the Countries Name
+    *
+    * Params:
+    *       - string Name
+    *
+    * Returns:
+    *       - void
+    */
+    /**
+    * Public :   Getshape()
+    *
+    * Description:
+    *       - Getter for the shape.
+    * Params:
+    *       - none.
+    *
+    * Returns:
+    *       - string
+    */
+    string GetShape()
+    {
+        return Shape;
+    }
+    /**
+      * Public :   GetOutLineColor()
+      *
+      * Description:
+      *       - Getter for the shape.
+      * Params:
+      *       - none.
+      *
+      * Returns:
+      *       - string
+      */
+    string GetOutLineColor()
+    {
+        return OutLineColor;
+    }
+
+    void SetCountryName(string Name)
+    {
+        CountryName = Name;
+    }
+
+    /**
+     * Public :   GetCountryName()
+     *
+     * Description:
+     *       - Getter for the contryies Names.
+     * Params:
+     *       - none.
+     *
+     * Returns:
+     *       - string
+     */
+    string GetCountryName()
+    {
+        return CountryName;
+    }
+
+    /**
+     * Public :   GetInitials()
+     *
+     * Description:
+     *       - Getter for the contryies Initials.
+     * Params:
+     *       - none.
+     *
+     * Returns:
+     *       - string
+     */
+    string GetInitials()
+    {
+        return Initials;
+    }
+
+    /**
+      * Public : ostream()
+      *
+      * Description:
+      *      - Overloading the cout operator to print the countries names.
+      *      - Print the countries initials.
+      * Params:
+      *      - ostream& OutFile, Node& other
+      *
+      * Returns:
+      *      - [string] ostream
+      */
+    friend ostream& operator<<(ostream& OutFile, Node& other)
+    {
+        //setup for graphviz
+        return OutFile << other.Initials << "[label =" << " \" "
+            << other.CountryName <<" \" " << "color = " <<
+            other.OutLineColor << " shape = " <<
+            other.Shape <<"]"<< '\n';
+    }
+
+    /**
+      * Public : istream()
+      *
+      * Description:
+      *      - Overloading the cin operator to read in the countries names.
+      *      - To read in the countries initials.
+      * Params:
+      *      - istream& InFile, Node& Node
+      *
+      * Returns:
+      *      - [string] istream
+      */
+    friend istream& operator>>(istream& InFile, Node& Node)
+    {
+        InFile >> Node.Initials >> Node.CountryName>> Node.OutLineColor >>Node.Shape;
+        return InFile;
+    }
+};
+
+/**
+ * Main Driver
+ *
+ * For this program
+ *
+ */
 int main()
 {
-
     ifstream InFile;
     ofstream OutFile;
-    openFiles(InFile, OutFile);// prompt for input output
+    openFiles(InFile, OutFile);
 
-    vector<LinkedNodes*> node_edges;// create a vector of edge pointers called edge
-    LinkedNodes* Links;// pointer to edges of the edge stuct
-
-     //create objects for class and structures
-    Node nodes;// class node with object nodes
-
-    //variable initialization
-
-    int NumNodes, Numedges, edges;// second line that reads in node numbers
-    string GraphType = "", FirstCountry, SecondCountry;
-    //these string values are the string values we are reading in
-
-
-    //read in the first value string to show which kind of graph
-    InFile >> GraphType;// read in the graph type and go to next line
-    OutFile << GraphType << " MyGraph "<< "{ "<<
-        "\n\n";
-    InFile >> NumNodes;// read in the next line which is the number of nodes
+    vector<LinkedNodes*> node_edges;                        // Create a vector of edge pointers.
+    LinkedNodes* Links;                                     // Pointer to edges.
+    Node nodes;                                             // Create object call nodes
     
-                       //dont need to print out nodes for transfer to graphviz
-    //OutFile << "There are :  " << NumNodes << "  Nodes" << endl;
-    //this is what we will read until
+    int NumNodes;
+    int Numedges;
+    int edges;
+    string GraphType = "", FirstCountry, SecondCountry;
 
-    while (!InFile.eof())
-    {//until eof() is encountered
+    InFile >> GraphType;                                    // Read in the graph type.
+    OutFile << GraphType << "\n{ " << "\n";                  // Display the graph Type.
+    InFile >> NumNodes;
+    
+                                     // Read in number of nodes.
+    while (!InFile.eof())                                   // While the file not empty.
+    {
         for (int i = 0; i < NumNodes;i++)
         {
-            // call the outstream and instream overload for 
-            // the lines
-            //no need for anything else
             InFile >> nodes;
+            // Read in the node and print it out.
             OutFile << nodes;
-
         }
-        //next link read in the value
 
-        InFile >> Numedges;// read in the number of edges
-
+        InFile >> Numedges;                                 // Read in the number of edges
         OutFile << "\n\n";
 
-        //graphviz doesnt need this
-        //OutFile << " There are " << Numedges << " linked nodes" << endl << endl;
-
-        for (int i = 0; i < Numedges;i++)// traverse tille end of read in value
+        for (int i = 0; i < Numedges;i++)
         {
-            //read in the first line the first instance
-
-                //read in all three from infile 
-                //create new node dynamically
-                //store in the vector
             InFile >> FirstCountry >> SecondCountry >> edges;
             Links = new LinkedNodes(FirstCountry, SecondCountry, edges);
-            node_edges.push_back(Links);
-
-
+            node_edges.push_back(Links);                    // Store in the vector.
         }
 
         for (int i = 0;i < node_edges.size();i++)
         {
-            //call ostream overload for the stuct
-            //print out each line
-            OutFile << *node_edges[i];
+            OutFile << *node_edges[i];                      // Print out each line.
         }
-        OutFile << "}" << endl; // close off the graph design
+        OutFile << "}" << endl;
     }
 
     InFile.close();
@@ -225,44 +473,39 @@ int main()
 
 }
 
-//#####################################################//
-//f(x) name                                            // 
-//  void openFiles(ifstream& InFile, ofstream& OutFile)//
-//                                                     //
-//what it does?                                        //
-// -> purpOutFilee is to user input in and outfile     //
-//                                                     //
-//paramters                                            //
-// -> utilizes the ofstream and outfile                //
-//                                                     //
-// return type                                         //
-// -> no return type because  void                     //
-//#####################################################//
-
+/**
+ *
+ * Function Name: openFiles ()
+ *
+ * Description:
+ *      - To prompt the user to enter infile and output file name.
+ *      - To Make sure the infile can be open.
+ *
+ * Parameters:
+ *      - ifstream& InFile, ofstream& OutFile
+ *
+ * Returns:
+ *      - void
+ *
+ */
 void openFiles(ifstream& InFile, ofstream& OutFile)
 {
-    // Declare variable for the Files. 
-    char InFileName[40];
+    char InFileName[40];                                    // Declare variable for the Files. 
     char outFileName[40];
 
-    // Prompt the user for InFile name
-    cout << "Enter the input file name: ";
+    cout << "Enter the input file name: ";                  // Prompt the user for InFile name.
     cin >> InFileName;
 
-    // open input file
-    InFile.open(InFileName);
+    InFile.open(InFileName);                                // Open input file.
 
-    //create failsafe way
-    if (InFile.fail()) //OutFile out if the file cannot be opened
+    if (InFile.fail())                                      // Create failsafe way.
     {
         cout << "the input file could not be opened" << endl;
         exit(0);
     }
 
-    // Prompt the user for OutFile name
-    cout << "Enter the output file name: ";
+    cout << "Enter the output file name: ";                 // Prompt the user for OutFile name.
     cin >> outFileName;
 
-    // Open outfile.
-    OutFile.open(outFileName);
+    OutFile.open(outFileName);                              // Open outfile.
 }
