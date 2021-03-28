@@ -123,7 +123,7 @@ struct LinkedNodes
     friend ostream& operator<<(ostream& OutFile, LinkedNodes& other)
     {
         return OutFile << other.FirstCountry << " -> " << other.SecondCountry
-            << " [label =" << " \"" << other.edge << " miles\"]" << '\n';
+            << " [label =" << " \"" << other.edge << " miles\"" << " arrowhead= odiamond ]"<< '\n';
     }
 };
 
@@ -388,7 +388,7 @@ int main()
             node_edges.push_back(Links);                    // Store in the vector.
         }
 
-        for (int i = 0;i < node_edges.size();i++)
+        for ( unsigned int i = 0;i < node_edges.size();i++)
         {
             OutFile << *node_edges[i];                      // Print out each line.
         }
