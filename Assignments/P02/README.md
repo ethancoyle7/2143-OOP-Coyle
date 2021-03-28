@@ -60,7 +60,7 @@ Not So Plain Binary Tree
 | [02](.main.cpp) |  [Program File](./main.cpp) | [ This is my main working program](./main.cpp)|
 | [03](.input.txt) |  [INPUT](./input.txt) | [ Input File Link](./input.txt)   |
 | [04](.output.txt) |  [OUTPUT](./output.txt) | [ This is the output link](./output.txt)|
-| [05](.GraphVizCode.txt) |  [GraphCode](./GraphVizCode.txt) | [This Code is the code implemented in Graph](./GraphVizCode.txt)|
+| [05](.Instructions.txt) |  [INSTRUCTIONS](./Instructions.txt) | [FOLLOW INSTRUCTIONS TO COMPILE OUTPUT](./Instructions.txt)|
 | [06](.VISUALGRAPH.png) |  [GraphPicture](./VISUALGRAPH.png) | [This is picture of Graph](./VISUALGRAPH.png)   |
 
 ### Below is a link to my Replit Where i build my code
