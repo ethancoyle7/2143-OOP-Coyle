@@ -61,7 +61,7 @@ Not So Plain Binary Tree
 | [03](.input.txt) |  [INPUT](./input.txt) | [ Input File Link](./input.txt)   |
 | [04](.output.txt) |  [OUTPUT](./output.txt) | [ This is the output link](./output.txt)|
 | [05](.Instructions.txt) |  [INSTRUCTIONS](./Instructions.txt) | [FOLLOW INSTRUCTIONS TO COMPILE OUTPUT](./Instructions.txt)|
-| [06](.VISUALGRAPH.png) |  [GraphPicture](./VISUALGRAPH.png) | [This is picture of Graph](./VISUALGRAPH.png)   |
+| [06](.GRAPH_PICTURE.png) |  [GraphPicture](./GRAPH_PICTURE.png) | [This is picture of Graph](./GRAPH_PICTURE.png)   |
 
 ### Below is a link to my Replit Where i build my code
 
