@@ -627,4 +627,9 @@ AE->BG[ label = " 997 mi " ];
 
 
 ##Copy and Paste This Code into GraphViz 
-## and then the Graph Will output on the right
+## the only way that this was able to be fully rendered was to 
+## select from the engine dropdown to the fdp engine  but using the 
+## svg format
+
+## running as a dot engine create a memory stop because was not able to
+##load the content fully 
