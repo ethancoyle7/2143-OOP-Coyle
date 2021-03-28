@@ -61,7 +61,7 @@ Not So Plain Binary Tree
 | [03](.input.txt) |  [INPUT](./input.txt) | [ Input File Link](./input.txt)   |
 | [04](.output.txt) |  [OUTPUT](./output.txt) | [ This is the output link](./output.txt)|
 | [05](.GraphVizCode.txt) |  [GraphCode](./GraphVizCode.txt) | [This Code is the code implemented in Graph](./GraphVizCode.txt)|
-| [06](.graphviz.png) |  [GraphPicture](./graphviz.png) | [This is picture of Graph](./graphviz.png)   |
+| [06](.VISUALGRAPH.png) |  [GraphPicture](./VISUALGRAPH.png) | [This is picture of Graph](./VISUALGRAPH.png)   |
 
 ### Below is a link to my Replit Where i build my code
 
@@ -77,5 +77,9 @@ Not So Plain Binary Tree
 
 * copy and paste the contents of the output file
 * See the result in the right 
+* To fully render the graph visualization
+* * select the fdp Engine from the dropdown
+* * then keep the same format SVG
+
 
 
