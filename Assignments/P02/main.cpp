@@ -1,14 +1,11 @@
 /*****************************************************************************
-*    Author:           Ethan Coyle
-*    Email:            Ejcoyle0912@my.msutexas.edu
-*    
+*
 *    Author:           Loic Konan
 *    Email:            loickonan.lk@gmail.com
 *
-
-*    Author:           Jonathan Hogan
-*    Email:            jon.hogan83@gmail.com
-*       
+*
+*    Author:           Ethan Coyle
+*    Email:            Ejcoyle0912@my.msutexas.edu
 *
 *    Label:            P02
 *    Title:            Program 02 - Graphviz Class
@@ -125,8 +122,8 @@ struct LinkedNodes
      */
     friend ostream& operator<<(ostream& OutFile, LinkedNodes& other)
     {
-        return OutFile << other.FirstCountry << " ->" << other.SecondCountry <<
-            "[ label =" << " \" " << other.edge << " mi \" ]" << '\n';
+        return OutFile << other.FirstCountry << " -> " << other.SecondCountry
+            << " [label =" << " \"" << other.edge << " miles\"]" << '\n';
     }
 };
 
@@ -138,6 +135,7 @@ struct LinkedNodes
  *
  *    private Methods:
  *        - None.
+ *
  *   public Methods:
  *       - Node()
  *       - Node(string CountryInitials, string Name)
@@ -156,18 +154,16 @@ struct LinkedNodes
 class Node
 {
 private:
-    /*private attributes
-    string EdgeOutLineColor;
-    string FillOutLineColor;
-    string OutlineOutLineColor;
-    string EdgeStyle;
-    string Name;
-    string NodeNumber;*/
+    // string EdgeColor;
+    // string FillColor;
+    // string OutlineColor;
+    // string EdgeStyle;
+
+    int width;
+    string shape;
 
     string Initials;
     string CountryName;
-    string Shape;
-    string OutLineColor;
 
 public:
 
@@ -185,8 +181,9 @@ public:
     */
     Node()
     {
-        Initials = CountryName = OutLineColor=Shape='a';
-        
+        Initials = CountryName = 'a';
+        width = 1;
+        shape = "diamond";
     }
 
     /**
@@ -201,13 +198,12 @@ public:
     * Returns:
     *      - N/A
     */
-    Node(string CountryInitials, string Name, string color, string shape)
+    Node(string CountryInitials, string Name)
     {
         CountryName = Name;
         Initials = CountryInitials;
-        OutLineColor = color;
-        Shape = shape;
-        
+        width = 1;
+        shape = "ellipse";
     }
 
     /**
@@ -227,8 +223,8 @@ public:
     {
         this->Initials = other.Initials;
         this->CountryName = other.CountryName;
-        this->OutLineColor = other.OutLineColor;
-        this->Shape = other.Shape;
+        this->width = other.width;
+        this->shape = other.shape;
     }
 
     /**
@@ -246,113 +242,50 @@ public:
     ~Node() {};
 
     /**
-     * Public :   SetInitials()
+     * Public : SetInitials()
      *
      * Description:
-     *       - setter for the Countries initials
+     *      - setter for the Countries initials
      *
      * Params:
-     *       - string CountryInitials
+     *      - string CountryInitials
      *
      * Returns:
-     *       - void
+     *      - void
      */
     void SetInitials(string CountryInitials)
     {
         Initials = CountryInitials;
     }
-    /**
-     * Public :   SetOutLineColor()
-     *
-     * Description:
-     *       - setter for the Node shape
-     *
-     * Params:
-     *       - string OutLineColor
-     *
-     * Returns:
-     *       - void
-     */
-    void SetOutLineColor(string color)
-    {
-        OutLineColor = color;
-    }
+
 
     /**
-     * Public :   SetOutLineColor()
-     *
-     * Description:
-     *       - setter for the Node shape
-     *
-     * Params:
-     *       - string OutLineColor
-     *
-     * Returns:
-     *       - void
-     */
-    void SetShape(string shape)
-    {
-        Shape = shape;
-    }
-
-    /**
-    * Public :   SetCountryName()
+    * Public : SetCountryName()
     *
     * Description:
-    *       - setter for the Countries Name
+    *      - setter for the Countries Name
     *
     * Params:
-    *       - string Name
+    *      - string Name
     *
     * Returns:
-    *       - void
+    *      - void
     */
-    /**
-    * Public :   Getshape()
-    *
-    * Description:
-    *       - Getter for the shape.
-    * Params:
-    *       - none.
-    *
-    * Returns:
-    *       - string
-    */
-    string GetShape()
-    {
-        return Shape;
-    }
-    /**
-      * Public :   GetOutLineColor()
-      *
-      * Description:
-      *       - Getter for the shape.
-      * Params:
-      *       - none.
-      *
-      * Returns:
-      *       - string
-      */
-    string GetOutLineColor()
-    {
-        return OutLineColor;
-    }
-
     void SetCountryName(string Name)
     {
         CountryName = Name;
     }
 
     /**
-     * Public :   GetCountryName()
+     * Public : GetCountryName()
      *
      * Description:
-     *       - Getter for the contryies Names.
+     *      - Getter for the contryies Names.
      * Params:
-     *       - none.
+     *      - none.
      *
      * Returns:
-     *       - string
+     *      - string
      */
     string GetCountryName()
     {
@@ -360,15 +293,15 @@ public:
     }
 
     /**
-     * Public :   GetInitials()
+     * Public : GetInitials()
      *
      * Description:
-     *       - Getter for the contryies Initials.
+     *      - Getter for the contryies Initials.
      * Params:
-     *       - none.
+     *      - none.
      *
      * Returns:
-     *       - string
+     *      - string
      */
     string GetInitials()
     {
@@ -389,11 +322,10 @@ public:
       */
     friend ostream& operator<<(ostream& OutFile, Node& other)
     {
-        //setup for graphviz
-        return OutFile << other.Initials << "[label =" << " \" "
-            << other.CountryName <<" \" " << "color = " <<
-            other.OutLineColor << " shape = " <<
-            other.Shape <<"]"<< '\n';
+        
+        return OutFile << other.Initials << " [label =" << " \""
+            << other.CountryName << " \", " << "color = red, " << "shape = " << other.shape
+            << ", width = " << other.width << "]" << '\n';
     }
 
     /**
@@ -410,7 +342,7 @@ public:
       */
     friend istream& operator>>(istream& InFile, Node& Node)
     {
-        InFile >> Node.Initials >> Node.CountryName>> Node.OutLineColor >>Node.Shape;
+        InFile >> Node.Initials >> Node.CountryName;
         return InFile;
     }
 };
@@ -430,7 +362,6 @@ int main()
     vector<LinkedNodes*> node_edges;                        // Create a vector of edge pointers.
     LinkedNodes* Links;                                     // Pointer to edges.
     Node nodes;                                             // Create object call nodes
-    
     int NumNodes;
     int Numedges;
     int edges;
@@ -438,20 +369,17 @@ int main()
 
     InFile >> GraphType;                                    // Read in the graph type.
     OutFile << GraphType << "\n{ " << "\n";                  // Display the graph Type.
-    InFile >> NumNodes;
-    
-                                     // Read in number of nodes.
+    InFile >> NumNodes;                                     // Read in number of nodes.
+
     while (!InFile.eof())                                   // While the file not empty.
     {
         for (int i = 0; i < NumNodes;i++)
         {
-            InFile >> nodes;
-            // Read in the node and print it out.
+            InFile >> nodes;                                // Read in the node and print it out.
             OutFile << nodes;
         }
 
         InFile >> Numedges;                                 // Read in the number of edges
-        OutFile << "\n\n";
 
         for (int i = 0; i < Numedges;i++)
         {
