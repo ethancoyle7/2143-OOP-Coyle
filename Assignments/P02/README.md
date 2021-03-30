@@ -14,7 +14,7 @@
 | [03](.input.txt) |  [INPUT](./input.txt) | [ Input File ](./input.txt)   |
 | [04](.output.txt) |  [OUTPUT](./output.txt) | [output link](./output.txt)|
 | [05](.Graphviz.dot) |  [INSTRUCTIONS](./Graphviz.dot) | [FOLLOW INSTRUCTIONS TO COMPILE OUTPUT](./Graphviz.dot)|
-| [06](.GraphvizMap.svg) |  [GraphPicture](./GraphvizMap.svg) | [This is picture of Graph](./GraphvizMap.png)   |
+| [06](.GraphvizMap.png) |  [GraphPicture](./GraphvizMap.png) | [This is picture of Graph](./GraphvizMap.png)   |
 
 #### Requirements
 Write a c++ class or classes to implement a graphviz language "wrapper" or "facade". This means we will be implementing a (tiny) subset of the graphviz language capability so we can visualize some of the typical data structures that we have learned up to now (from 1063 and or 3013).
