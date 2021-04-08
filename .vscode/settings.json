@@ -4,7 +4,7 @@
         "iosfwd": "cpp",
         "xstring": "cpp"
     },
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "C_Cpp.errorSquiggles": "Enabled",
-    "terminal.integrated.shell.windows": "C \\Program Files\\Git\\bin\\bash.exe"
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 }
