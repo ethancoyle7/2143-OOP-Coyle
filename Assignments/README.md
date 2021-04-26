@@ -12,7 +12,7 @@
 | [08](./A08) | [A08](./A08) | [rgb color class assignment](./A08)   |
 | [09](./P01) | [P01](./P01) | [Project 1 SFML GAME ](./P01)   |
 | [10](./P02) | [P02](./P02) | [Diagram using GraphViz ](./P02)   |
-[11](./T02) | [T02](./T02) | [Diagram using GraphViz ](./T02)   |
+[11](./T02) | [T02](./T02) | [LINK TO EXAM TAKE HOME TEST ](./T02)   |
 
 
 
